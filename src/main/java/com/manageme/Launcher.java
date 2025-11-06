@@ -1,4 +1,4 @@
-package org.example.proyectomarta;
+package com.manageme;
 
 import javafx.application.Application;
 

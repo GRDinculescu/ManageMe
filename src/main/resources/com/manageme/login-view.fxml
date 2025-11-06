@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 
 <VBox alignment="CENTER" prefHeight="500" prefWidth="300" xmlns="http://javafx.com/javafx/17.0.12"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.proyectomarta.LoginController">
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.manageme.controllers.LoginController">
     <GridPane fx:id="loginPane" alignment="CENTER">
         <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -24,7 +24,7 @@
             <RowConstraints prefHeight="40.0" vgrow="SOMETIMES" /> <!-- Link Olvide la contraseña -->
         </rowConstraints>
         <ImageView fx:id="imgLoginLogo" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-            <Image url="@../../../drawable/almacen.png" />
+            <Image url="@../../drawable/almacen.png" />
         </ImageView>
         <Label fx:id="lblUser" prefHeight="17.0" prefWidth="300.0" text="Usuario" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
         <TextField fx:id="tfdUser" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
