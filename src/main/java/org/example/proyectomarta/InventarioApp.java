@@ -15,12 +15,11 @@ public class InventarioApp extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 350, 500);
         stage.setTitle("Inicia sesion!");
         stage.setScene(scene);
-        stage.setResizable(false);
+        stage.setMaximized(true);
         stage.show();
 
-        GridPane login = (GridPane) scene.lookup("#loginPane");
+        // Quitar el menu de olvide la contraseña
         GridPane forgot = (GridPane) scene.lookup("#forgotPane");
-
         forgot.setVisible(false);
         forgot.setManaged(false);
     }
