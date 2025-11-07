@@ -3,16 +3,20 @@ package com.manageme.controllers;
 import com.manageme.InventarioApp;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class LoginController {
+    @FXML VBox loginPane;
+    @FXML VBox forgotPane;
     @FXML Button btnLogin;
     @FXML TextField tfdPasswd;
     @FXML Label lblPasswd;
@@ -20,8 +24,6 @@ public class LoginController {
     @FXML Label lblUser;
     @FXML ImageView imgLoginLogo;
     @FXML TextField tfdUserForget;
-    @FXML GridPane loginPane;
-    @FXML GridPane forgotPane;
 
     @FXML
     protected void onForgetPassword() throws IOException {
@@ -47,11 +49,11 @@ public class LoginController {
         // TODO: Change this later / can someone pls put that message?
         if (user.equals("admin") && password.equals("1234")) {
             // lblMsg.setText(" Bienvenido administrador!");
-            // FIXME: And Rafa, arregla esto c:
             FXMLLoader fxmlLoader = new FXMLLoader(InventarioApp.class.getResource("main-view.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 350, 500);
-            stage.setTitle("Inicia sesion!");
-            stage.setScene(scene);
+            Parent root = fxmlLoader.load();
+            Scene mainScene = new Scene(root, 1600, 1000);
+            Stage stage = (Stage)  tfdUser.getScene().getWindow();
+            stage.setScene(mainScene);
             stage.setMaximized(true);
             stage.show();
 
