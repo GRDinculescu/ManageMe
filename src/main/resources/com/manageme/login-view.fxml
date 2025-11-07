@@ -30,7 +30,7 @@
         <TextField fx:id="tfdUser" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
         <Label fx:id="lblPasswd" prefHeight="17.0" prefWidth="300.0" text="Contraseña" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM" />
         <TextField fx:id="tfdPasswd" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-        <Button fx:id="btnLogin" text="Iniciar Sesion" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="BOTTOM" />
+        <Button onAction="#onLogin" fx:id="btnLogin" text="Iniciar Sesion" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="BOTTOM" />
         <Hyperlink onAction="#onForgetPassword" text="He olvidado mi contraseña" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
     </GridPane>
 
@@ -49,10 +49,11 @@
             <RowConstraints prefHeight="50.0" vgrow="SOMETIMES" /> <!-- Button -->
         </rowConstraints>
         <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-            <Image url="@../../../drawable/almacen.png" />
+            <Image url="@../../drawable/almacen.png" />
         </ImageView>
         <Label prefWidth="300.0" maxWidth="300.0" text="Usuario" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
         <TextField fx:id="tfdUserForget" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
         <Button mnemonicParsing="false" text="Enviar" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+        <Hyperlink onAction="#onRememberedPassword" text="Soy bobo y he recordado la contraseña / Esto no va!!" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
     </GridPane>
 </VBox>

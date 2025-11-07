@@ -1,6 +1,9 @@
 package com.manageme.controllers;
 
+import com.manageme.InventarioApp;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -27,4 +30,38 @@ public class LoginController {
         forgotPane.setVisible(true);
         forgotPane.setManaged(true);
     }
+
+    @FXML
+    protected void onRememberedPassword() throws IOException {
+        forgotPane.setVisible(false);
+        forgotPane.setManaged(false);
+        loginPane.setVisible(true);
+        loginPane.setManaged(true);
+    }
+
+    @FXML
+    protected void onLogin() throws IOException {
+        String user = tfdUser.getText();
+        String password = tfdPasswd.getText();
+
+        // TODO: Change this later / can someone pls put that message?
+        if (user.equals("admin") && password.equals("1234")) {
+            // lblMsg.setText(" Bienvenido administrador!");
+            // FIXME: And Rafa, arregla esto c:
+            FXMLLoader fxmlLoader = new FXMLLoader(InventarioApp.class.getResource("main-view.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 350, 500);
+            stage.setTitle("Inicia sesion!");
+            stage.setScene(scene);
+            stage.setMaximized(true);
+            stage.show();
+
+        } else if (user.equals("vendedor") && password.equals("abcd")) {
+            // lblMsg.setText(" Bienvenido vendedor!");
+        } else if (user.equals("cliente") && password.equals("pass")) {
+            //  lblMsg.setText(" Bienvenido cliente!");
+        } else {
+            //lblMsg.setText(" Usuario o contraseña incorrectos");
+        }
+    }
+
 }
