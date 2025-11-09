@@ -6,46 +6,43 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <?import javafx.scene.image.Image?>
-<GridPane alignment="CENTER" prefHeight="1000" prefWidth="1500" vgap="10.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.manageme.controllers.MainController">
-    <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-    </columnConstraints>
-    <rowConstraints>
-        <RowConstraints maxHeight="80.0" minHeight="80.0" prefHeight="80.0" vgrow="SOMETIMES" />
-        <RowConstraints minHeight="80.0" vgrow="ALWAYS" />
-    </rowConstraints>
-    <BorderPane layoutX="10.0" layoutY="100.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: cyan;">
+<VBox minHeight="600" minWidth="800" prefHeight="1080" prefWidth="1920" stylesheets="@help-style.css"
+      xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.manageme.controllers.HelpController">
+    <BorderPane layoutX="10.0" layoutY="100.0" prefWidth="200.0" style="-fx-background-color: cyan;">
+        <padding>
+            <Insets top="20" bottom="20" left="20" right="20"/>
+        </padding>
         <left>
             <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-                <Image url="@../../drawable/logo_dev.png"/>
+                <Image url="@../../drawable/logo_dev.png" />
             </ImageView>
         </left>
         <right>
             <HBox spacing="15.0" style="-fx-background-color: green;">
                 <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@../../drawable/notifications.png"/>
+                    <Image url="@../../drawable/notifications.png" />
                 </ImageView>
                 <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@../../drawable/help.png"/>
+                    <Image url="@../../drawable/help.png" />
                 </ImageView>
                 <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@../../drawable/menu.png"/>
+                    <Image url="@../../drawable/menu.png" />
                 </ImageView>
                 <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@../../drawable/face.png"/>
+                    <Image url="@../../drawable/face.png" />
                 </ImageView>
             </HBox>
         </right>
     </BorderPane>
-    <VBox prefWidth="200.0" spacing="30.0" GridPane.rowIndex="1">
+    <VBox prefWidth="200.0" spacing="30.0" VBox.vgrow="ALWAYS">
+        <padding>
+            <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+        </padding>
         <BorderPane prefHeight="100.0">
             <left>
                 <Button maxHeight="100.0" maxWidth="200.0" minHeight="80.0" minWidth="80.0" prefHeight="100.0" prefWidth="200.0" text="FILTRAR" textAlignment="CENTER">
@@ -68,26 +65,13 @@
                </font></Button>
             </right>
         </BorderPane>
-        <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" spacing="30.0" VBox.vgrow="ALWAYS">
-            <GridPane style="-fx-background-color: red;" HBox.hgrow="ALWAYS">
-                <columnConstraints>
-                    <ColumnConstraints />
-                    <ColumnConstraints />
-                    <ColumnConstraints />
-                </columnConstraints>
-                <rowConstraints>
-                    <RowConstraints />
-                    <RowConstraints />
-                    <RowConstraints />
-                    <RowConstraints />
-                </rowConstraints>
-            </GridPane>
-            <ScrollPane minWidth="-Infinity" style="-fx-background-color: red;" HBox.hgrow="ALWAYS">
+        <HBox spacing="30.0" VBox.vgrow="ALWAYS">
+            <VBox style="-fx-background-color: red;" HBox.hgrow="ALWAYS">
+
+            </VBox>
+            <ScrollPane style="-fx-background-color: red;" HBox.hgrow="ALWAYS">
 
             </ScrollPane>
         </HBox>
-      <padding>
-         <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
-      </padding>
     </VBox>
-</GridPane>
+</VBox>

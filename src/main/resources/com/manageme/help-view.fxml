@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox minHeight="600" minWidth="800" prefHeight="1080" prefWidth="1920" stylesheets="@help-style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.manageme.controllers.HelpController">
+    <BorderPane layoutX="10.0" layoutY="100.0" prefWidth="200.0" style="-fx-background-color: cyan;">
+        <padding>
+            <Insets top="20" bottom="20" left="20" right="20"/>
+        </padding>
+        <left>
+            <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                <Image url="@../../drawable/logo_dev.png" />
+            </ImageView>
+        </left>
+        <right>
+            <HBox spacing="15.0" style="-fx-background-color: green;">
+                <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@../../drawable/notifications.png" />
+                </ImageView>
+                <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@../../drawable/help.png" />
+                </ImageView>
+                <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@../../drawable/menu.png" />
+                </ImageView>
+                <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@../../drawable/face.png" />
+                </ImageView>
+            </HBox>
+        </right>
+    </BorderPane>
+    <HBox VBox.vgrow="ALWAYS" spacing="50">
+        <padding>
+            <Insets bottom="50" left="50" right="50" top="50" />
+        </padding>
+        <VBox alignment="CENTER_LEFT" spacing="50" HBox.hgrow="ALWAYS">
+            <BorderPane styleClass="question">
+                <center> <Label text="Tengo una pregunta" prefHeight="80"/> </center>
+                <right> <ImageView> <Image url="@../../drawable/keyboard_arrow_right.png" /> </ImageView> </right>
+            </BorderPane>
+
+            <BorderPane styleClass="question">
+                <center> <Label text="Tengo una pregunta" prefHeight="80"/> </center>
+                <right> <ImageView> <Image url="@../../drawable/keyboard_arrow_right.png" /> </ImageView> </right>
+            </BorderPane>
+
+            <BorderPane styleClass="question">
+                <center> <Label text="Tengo una pregunta" prefHeight="80"/> </center>
+                <right> <ImageView> <Image url="@../../drawable/keyboard_arrow_right.png" /> </ImageView> </right>
+            </BorderPane>
+
+            <BorderPane styleClass="question">
+                <center> <Label text="Tengo una pregunta" prefHeight="80"/> </center>
+                <right> <ImageView> <Image url="@../../drawable/keyboard_arrow_right.png" /> </ImageView> </right>
+            </BorderPane>
+
+            <BorderPane styleClass="question">
+                <center> <Label text="Tengo una pregunta" prefHeight="80"/> </center>
+                <right> <ImageView> <Image url="@../../drawable/keyboard_arrow_right.png" /> </ImageView> </right>
+            </BorderPane>
+
+            <BorderPane styleClass="question">
+                <center> <Label text="Tengo una pregunta" prefHeight="80"/> </center>
+                <right> <ImageView> <Image url="@../../drawable/keyboard_arrow_right.png" /> </ImageView> </right>
+            </BorderPane>
+        </VBox>
+        <VBox HBox.hgrow="ALWAYS" spacing="10">
+            <HBox>
+                <ImageView fitWidth="200" fitHeight="200">
+                    <Image url="@../../drawable/face.png"/>
+                </ImageView>
+                <VBox>
+                    <Label fx:id="username" text="Usuario conectado" style="-fx-font-size: 40px;"/>
+                    <Label fx:id="supportEmail" text="Email de soporte: suporte@manageme.es" style="-fx-font-size: 32px;"/>
+                    <Label fx:id="supportPhone" text="Telefono de sporte: +34 967 253 621" style="-fx-font-size: 32px;"/>
+                </VBox>
+            </HBox>
+            <TextArea VBox.vgrow="ALWAYS"/>
+            <HBox>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button text="Enviar" prefWidth="150" prefHeight="50" style="-fx-font-size: 32px;"/>
+            </HBox>
+        </VBox>
+    </HBox>
+</VBox>
