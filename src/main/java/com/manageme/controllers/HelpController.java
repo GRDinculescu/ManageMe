@@ -3,67 +3,82 @@ package com.manageme.controllers;
 import com.manageme.InventarioApp;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class HelpController {
+    // Preguntas
+    @FXML HBox custom;
+    @FXML HBox q1;
+    @FXML HBox q2;
+    @FXML HBox q3;
+    @FXML HBox q4;
+    @FXML HBox q5;
+
+    // Respuestas
+    @FXML VBox form;
+    @FXML VBox m1;
+    @FXML VBox m2;
+    @FXML VBox m3;
+    @FXML VBox m4;
+    @FXML VBox m5;
+
+    Map<String , VBox> panels;
+
     @FXML VBox loginPane;
     @FXML VBox forgotPane;
-    @FXML Button btnLogin;
     @FXML TextField tfdPasswd;
-    @FXML Label lblPasswd;
     @FXML TextField tfdUser;
-    @FXML Label lblUser;
-    @FXML ImageView imgLoginLogo;
-    @FXML TextField tfdUserForget;
 
-    @FXML
-    protected void onForgetPassword() throws IOException {
-        loginPane.setVisible(false);
-        loginPane.setManaged(false);
-        forgotPane.setVisible(true);
-        forgotPane.setManaged(true);
-    }
+    void initData(String userRole){
+        panels = Map.of(
+                "custom", form,
+                "q1", m1,
+                "q2", m2,
+                "q3", m3,
+                "q4", m4,
+                "q5", m5
+        );
 
-    @FXML
-    protected void onRememberedPassword() throws IOException {
-        forgotPane.setVisible(false);
-        forgotPane.setManaged(false);
-        loginPane.setVisible(true);
-        loginPane.setManaged(true);
-    }
+        // Todo: Hacer que las preguntas cambien según el usuario.
+        //  Que le importa al usuario como agregar nuevos si no puede
 
-    @FXML
-    protected void onLogin() throws IOException {
-        String user = tfdUser.getText();
-        String password = tfdPasswd.getText();
-
-        // TODO: Change this later / can someone pls put that message?
-        if (user.equals("admin") && password.equals("1234")) {
-            // lblMsg.setText(" Bienvenido administrador!");
-            FXMLLoader fxmlLoader = new FXMLLoader(InventarioApp.class.getResource("main-view.fxml"));
-            Parent root = fxmlLoader.load();
-            Scene mainScene = new Scene(root, 1600, 1000);
-            Stage stage = (Stage)  tfdUser.getScene().getWindow();
-            stage.setScene(mainScene);
-            stage.setMaximized(true);
-            stage.show();
-
-        } else if (user.equals("vendedor") && password.equals("abcd")) {
-            // lblMsg.setText(" Bienvenido vendedor!");
-        } else if (user.equals("cliente") && password.equals("pass")) {
-            //  lblMsg.setText(" Bienvenido cliente!");
-        } else {
-            //lblMsg.setText(" Usuario o contraseña incorrectos");
+        switch (userRole){
+            case "admin" -> {
+                Node node = q1.getChildren().getFirst();
+                ((Label) node).setText("Como agrego un usuario");
+            }
+            case "user" -> {}
+            case "manager" -> {}
         }
     }
 
+    @FXML
+    void handleEvent(MouseEvent event){
+        HBox box = (HBox) event.getSource();
+
+        panels.values().forEach(vbox -> {
+            vbox.setVisible(false);
+            vbox.setManaged(false);
+        });
+
+        VBox selected = panels.get(box.getId());
+        if (selected != null){
+            selected.setVisible(true);
+            selected.setManaged(true);
+        }
+    }
 }

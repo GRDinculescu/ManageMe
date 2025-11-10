@@ -1,8 +1,11 @@
 .question {
     -fx-background-color: lime;
-    -fx-padding: 10px;
     -fx-alignment: center;
-    -fx-padding-left: 50px;
     -fx-font-size: 40px;
-    -fx-background-radius: 50px;
+    -fx-background-radius: 100px;
+}
+
+.answer{
+    -fx-padding: 100px;
+    -fx-font-size: 50px;
 }

@@ -1,0 +1,9 @@
+.categoryButton{
+    -fx-font-size: 40px;
+    -fx-pref-width: 175px;
+    -fx-pref-height: 175px;
+}
+
+.categoriesMenu{
+    -fx-padding: 25px;
+}

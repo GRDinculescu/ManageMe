@@ -1,21 +1,41 @@
 package com.manageme.controllers;
 
+import com.manageme.InventarioApp;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class MainController {
-    @FXML
-    GridPane loginPane;
-    @FXML
-    GridPane forgotPane;
+    @FXML Label username;
 
-    @FXML
-    protected void onForgetPassword() throws IOException {
-        loginPane.setVisible(false);
-        loginPane.setManaged(false);
-        forgotPane.setVisible(true);
-        forgotPane.setManaged(true);
+    void initData(String user){
+        username.setText(user);
+    }
+
+    public void onHelpClicked(MouseEvent mouseEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(InventarioApp.class.getResource("help-view.fxml"));
+        Parent root = fxmlLoader.load();
+        Scene mainScene = new Scene(root);
+        Stage stage = (Stage) username.getScene().getWindow();
+
+        HelpController helpController = fxmlLoader.getController();
+        helpController.initData(username.getText());
+
+        stage.hide();
+        stage.setScene(mainScene);
+        stage.show();
+        Platform.runLater(() -> {
+            stage.setMaximized(true);
+            stage.requestFocus();
+            stage.toFront();
+        });
     }
 }

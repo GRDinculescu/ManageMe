@@ -15,7 +15,7 @@ public class InventarioApp extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(InventarioApp.class.getResource("login-view.fxml"));
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root, 350, 500);
-        stage.setTitle("Inicia sesion!");
+        stage.setTitle("Inicia sesión!");
         stage.setScene(scene);
         stage.setMaximized(true);
         stage.show();

@@ -5,34 +5,31 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox minHeight="600" minWidth="800" prefHeight="1080" prefWidth="1920" stylesheets="@help-style.css"
-      xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.manageme.controllers.HelpController">
-    <BorderPane layoutX="10.0" layoutY="100.0" prefWidth="200.0" style="-fx-background-color: cyan;">
+<VBox minHeight="600" minWidth="800" prefHeight="1080" prefWidth="1920" stylesheets="@styles/help-style.css"
+      xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.manageme.controllers.UsersController">
+    <HBox style="-fx-background-color: cyan;">
         <padding>
             <Insets top="20" bottom="20" left="20" right="20"/>
         </padding>
-        <left>
+        <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+            <Image url="@../../drawable/logo_dev.png" />
+        </ImageView>
+        <Region HBox.hgrow="ALWAYS"/>
+        <HBox spacing="25.0" style="-fx-background-color: green;">
             <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-                <Image url="@../../drawable/logo_dev.png" />
+                <Image url="@../../drawable/notifications.png" />
             </ImageView>
-        </left>
-        <right>
-            <HBox spacing="15.0" style="-fx-background-color: green;">
-                <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@../../drawable/notifications.png" />
-                </ImageView>
-                <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@../../drawable/help.png" />
-                </ImageView>
-                <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@../../drawable/menu.png" />
-                </ImageView>
-                <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@../../drawable/face.png" />
-                </ImageView>
-            </HBox>
-        </right>
-    </BorderPane>
+            <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                <Image url="@../../drawable/help.png" />
+            </ImageView>
+            <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                <Image url="@../../drawable/menu.png" />
+            </ImageView>
+            <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                <Image url="@../../drawable/face.png" />
+            </ImageView>
+        </HBox>
+    </HBox>
     <ScrollPane VBox.vgrow="ALWAYS" fitToWidth="true">
         <padding>
             <Insets top="50" bottom="50" left="50" right="50"/>
