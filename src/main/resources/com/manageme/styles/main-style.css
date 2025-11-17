@@ -7,3 +7,7 @@
 .categoriesMenu{
     -fx-padding: 25px;
 }
+
+.filters {
+    -fx-font-size: 20px;
+}

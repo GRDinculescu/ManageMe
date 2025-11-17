@@ -6,6 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
+<?import org.controlsfx.control.RangeSlider?>
 <VBox minHeight="600" minWidth="800" prefHeight="1080" prefWidth="1920" stylesheets="@styles/main-style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.manageme.controllers.MainController">
     <HBox style="-fx-background-color: cyan;">
         <padding>
@@ -62,7 +63,7 @@
             </font></Button>
         </HBox>
         <HBox spacing="30.0" VBox.vgrow="ALWAYS">
-            <VBox alignment="CENTER" spacing="20" style="-fx-background-color: red;" styleClass="categoriesMenu">
+            <VBox managed="false" visible="false" alignment="CENTER" spacing="20" style="-fx-background-color: red;" styleClass="categoriesMenu">
                 <HBox spacing="20">
                     <Button styleClass="categoryButton" text="Carne" />
                     <Button styleClass="categoryButton" text="Carne" />
@@ -84,6 +85,60 @@
                     <Button styleClass="categoryButton" text="Carne" />
                 </HBox>
             </VBox>
+            <HBox spacing="100" styleClass="filters">
+                <padding>
+                    <Insets left="50" right="50"/>
+                </padding>
+                <VBox spacing="25">
+                    <!---->
+                    <VBox>
+                        <Label text="Precio"/>
+                        <HBox>
+                            <TextField/>
+                            <TextField/>
+                        </HBox>
+                        <RangeSlider/>
+                    </VBox>
+
+                    <!---->
+                    <VBox>
+                        <Label text="Marca"/>
+                        <ComboBox/>
+                    </VBox>
+
+                    <!---->
+                    <VBox>
+                        <Label text="Proveedor"/>
+                        <ComboBox/>
+                    </VBox>
+
+                    <!---->
+                    <CheckBox text="Comprable"/>
+                </VBox>
+                <VBox spacing="25">
+                    <!---->
+                    <VBox>
+                        <Label text="Stock"/>
+                        <HBox>
+                            <TextField/>
+                            <TextField/>
+                        </HBox>
+                        <RangeSlider/>
+                    </VBox>
+
+                    <!---->
+                    <VBox>
+                        <Label text="Categoria"/>
+                        <ComboBox/>
+                    </VBox>
+
+                    <!---->
+                    <VBox>
+                        <Label text="Subcategoría"/>
+                        <ComboBox/>
+                    </VBox>
+                </VBox>
+            </HBox>
             <ScrollPane style="-fx-background-color: red;" HBox.hgrow="ALWAYS">
 
             </ScrollPane>
