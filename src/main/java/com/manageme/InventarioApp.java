@@ -12,9 +12,9 @@ import java.io.IOException;
 public class InventarioApp extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(InventarioApp.class.getResource("login-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(InventarioApp.class.getResource("main-view.fxml"));
         Parent root = fxmlLoader.load();
-        Scene scene = new Scene(root, 350, 500);
+        Scene scene = new Scene(root);
         stage.setTitle("Inicia sesión!");
         stage.setScene(scene);
         stage.setMaximized(true);

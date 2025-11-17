@@ -7,29 +7,9 @@
 
 <VBox minHeight="600" minWidth="800" prefHeight="1080" prefWidth="1920" stylesheets="@styles/help-style.css"
       xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.manageme.controllers.UsersController">
-    <HBox style="-fx-background-color: cyan;">
-        <padding>
-            <Insets top="20" bottom="20" left="20" right="20"/>
-        </padding>
-        <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-            <Image url="@../../drawable/logo_dev.png" />
-        </ImageView>
-        <Region HBox.hgrow="ALWAYS"/>
-        <HBox spacing="25.0" style="-fx-background-color: green;">
-            <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-                <Image url="@../../drawable/notifications.png" />
-            </ImageView>
-            <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-                <Image url="@../../drawable/help.png" />
-            </ImageView>
-            <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-                <Image url="@../../drawable/menu.png" />
-            </ImageView>
-            <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-                <Image url="@../../drawable/face.png" />
-            </ImageView>
-        </HBox>
-    </HBox>
+
+    <fx:include source="menu-bar-layout.fxml"/>
+
     <ScrollPane VBox.vgrow="ALWAYS" fitToWidth="true">
         <padding>
             <Insets top="50" bottom="50" left="50" right="50"/>

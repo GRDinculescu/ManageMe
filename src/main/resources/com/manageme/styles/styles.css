@@ -1,0 +1,88 @@
+.w-25 { -fx-pref-width: 25px; }
+.w-50 { -fx-pref-width: 50px; }
+.w-75 { -fx-pref-width: 75px; }
+.w-100 { -fx-pref-width: 100px; }
+.w-125 { -fx-pref-width: 125px; }
+.w-150 { -fx-pref-width: 150px; }
+.w-175 { -fx-pref-width: 175px; }
+.w-200 { -fx-pref-width: 200px; }
+
+.h-25 { -fx-pref-height: 25px; }
+.h-50 { -fx-pref-height: 50px; }
+.h-75 { -fx-pref-height: 75px; }
+.h-100 { -fx-pref-height: 100px; }
+.h-125 { -fx-pref-height: 125px; }
+.h-150 { -fx-pref-height: 150px; }
+.h-175 { -fx-pref-height: 175px; }
+.h-200 { -fx-pref-height: 200px; }
+
+.fw-25 { -fx-fit-width: 25px; }
+.fw-50 { -fx-fit-width: 50px; }
+.fw-75 { -fx-fit-width: 75px; }
+.fw-100 { -fx-fit-width: 100px; }
+.fw-125 { -fx-fit-width: 125px; }
+.fw-150 { -fx-fit-width: 150px; }
+.fw-175 { -fx-fit-width: 175px; }
+.fw-200 { -fx-fit-width: 200px; }
+
+.fh-25 { -fx-fit-height: 25px; }
+.fh-50 { -fx-fit-height: 50px; }
+.fh-75 { -fx-fit-height: 75px; }
+.fh-100 { -fx-fit-height: 100px; }
+.fh-125 { -fx-fit-height: 125px; }
+.fh-150 { -fx-fit-height: 150px; }
+.fh-175 { -fx-fit-height: 175px; }
+.fh-200 { -fx-fit-height: 200px; }
+
+.bold { -fx-font-weight: bold; }
+
+.ts-1{ -fx-font-size: 10px; }
+.ts-2 { -fx-font-size: 20px; }
+.ts-3 { -fx-font-size: 30px; }
+.ts-4 { -fx-font-size: 40px; }
+.ts-5 { -fx-font-size: 50px; }
+
+.round-1 { -fx-background-radius: 10px; }
+.round-2 { -fx-background-radius: 20px; }
+.round-3 { -fx-background-radius: 30px; }
+.round-4 { -fx-background-radius: 40px; }
+.round-5 { -fx-background-radius: 50px; }
+
+/* Colores claros */
+.bc-lred    { -fx-background-color: lightcoral; }
+.bc-lorange { -fx-background-color: moccasin; }
+.bc-lyellow { -fx-background-color: lightyellow; }
+.bc-lpurple { -fx-background-color: thistle; }
+.bc-lbrown  { -fx-background-color: wheat; }
+.bc-lpink   { -fx-background-color: lightpink; }
+.bc-lcyan   { -fx-background-color: lightcyan; }
+.bc-lgreen  { -fx-background-color: lightgreen; }
+.bc-lblue   { -fx-background-color: lightblue; }
+
+/* Colores normales */
+.bc-red     { -fx-background-color: red; }
+.bc-orange  { -fx-background-color: orange; }
+.bc-yellow  { -fx-background-color: yellow; }
+.bc-green   { -fx-background-color: green; }
+.bc-purple  { -fx-background-color: purple; }
+.bc-brown   { -fx-background-color: saddlebrown; }
+.bc-pink    { -fx-background-color: pink; }
+.bc-cyan    { -fx-background-color: cyan; }
+.bc-blue    { -fx-background-color: blue; }
+
+/* Colores oscuros */
+.bc-dred    { -fx-background-color: darkred; }
+.bc-dorange { -fx-background-color: darkorange; }
+.bc-dyellow { -fx-background-color: goldenrod; }
+.bc-dgreen  { -fx-background-color: darkgreen; }
+.bc-dblue   { -fx-background-color: darkblue; }
+.bc-dpurple { -fx-background-color: indigo; }
+.bc-dbrown  { -fx-background-color: #4e2a06; }
+.bc-dcyan   { -fx-background-color: darkcyan; }
+
+/* Tonos neutros adicionales */
+.bc-lgray   { -fx-background-color: lightgray; }
+.bc-gray    { -fx-background-color: gray; }
+.bc-dgray   { -fx-background-color: darkgray; }
+.bc-black   { -fx-background-color: black; }
+.bc-white   { -fx-background-color: white; }

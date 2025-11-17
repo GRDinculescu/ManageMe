@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<HBox xmlns="http://javafx.com/javafx"
+      stylesheets="@styles/styles.css"
+      HBox.hgrow="ALWAYS" styleClass="bc-cyan, round-3"
+      spacing="25" alignment="CENTER_LEFT">
+    <padding>
+        <Insets top="10" bottom="10" left="10" right="25"/>
+    </padding>
+    <ImageView styleClass="fw-150" preserveRatio="true">
+        <Image url="@../../drawable/face.png"/>
+    </ImageView>
+    <VBox HBox.hgrow="ALWAYS">
+        <padding>
+            <Insets top="20" bottom="20" right="30"/>
+        </padding>
+        <Label text="Nombre del producto 1" styleClass="ts-3"/>
+        <Region VBox.vgrow="ALWAYS"/>
+        <HBox HBox.hgrow="ALWAYS">
+            <Label text="Categoria" styleClass="ts-2"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label text="Marca" styleClass="ts-2"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label text="Precio" styleClass="ts-2"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label text="Unidades" styleClass="ts-2"/>
+        </HBox>
+    </VBox>
+    <Button text="EDITAR" styleClass="h-125, w-125, round-2, bold, ts-2"/>
+</HBox>
