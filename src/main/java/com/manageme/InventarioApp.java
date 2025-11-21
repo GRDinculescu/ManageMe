@@ -1,6 +1,7 @@
 package com.manageme;
 
 import com.google.gson.Gson;
+import com.manageme.controllers.LoginController;
 import com.manageme.models.User;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -67,6 +68,10 @@ public class InventarioApp extends Application {
 
         FXMLLoader fxmlLoader = new FXMLLoader(InventarioApp.class.getResource("login-view.fxml"));
         Parent root = fxmlLoader.load();
+
+        LoginController lc = fxmlLoader.getController();
+        lc.initData(users, passwords);
+
         Scene scene = new Scene(root);
         stage.setTitle("Inicia sesión!");
         stage.setScene(scene);

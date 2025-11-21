@@ -17,6 +17,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -36,6 +37,15 @@ public class LoginController {
 
     private final Functions functions = new Functions();
 
+    private File users;
+    private File passwords;
+
+    public void initData(File users, File passwords){
+        this.users = users;
+        this.passwords = passwords;
+    }
+
+
     @FXML
     protected void onForgetPassword() throws IOException {
         loginPane.setVisible(false);
@@ -52,6 +62,7 @@ public class LoginController {
         loginPane.setManaged(true);
     }
 
+
     @FXML
     protected void onLogin() throws IOException {
         Properties properties = new Properties();
@@ -59,7 +70,7 @@ public class LoginController {
         String username = tfdUser.getText();
         String password = tfdPasswd.getText();
 
-        try (FileReader fr = new FileReader("users.properties")) {
+        try (FileReader fr = new FileReader(passwords)) {
             properties.load(fr); // Cargamos el archivo de usuarios
 
             if (!properties.containsKey(username)) { // Verificamos si existe
@@ -78,7 +89,7 @@ public class LoginController {
 
         Gson gson = new Gson();
         User user;
-        try (FileReader fr = new FileReader("users.json")) {
+        try (FileReader fr = new FileReader(users)) {
             user = gson.fromJson(fr, User.class);
         } catch (FileNotFoundException e) {// Si no se encuentra el archivo de usuarios
             functions.showAlert("File error", "No se encontró el archivo de usuario", Alert.AlertType.ERROR);

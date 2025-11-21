@@ -7,6 +7,7 @@ module org.example.proyectomarta {
     requires org.kordamp.bootstrapfx.core;
     requires javafx.graphics;
     requires com.google.gson;
+    requires org.example.proyectomarta;
 
     opens com.manageme to javafx.fxml;
     exports com.manageme;
