@@ -1,6 +1,7 @@
 package com.manageme.controllers;
 
 import com.manageme.InventarioApp;
+import com.manageme.models.User;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,11 +25,10 @@ public class MainController {
 
     private boolean viewFiltres = false;
 
-    void initData(String user){
+    void initData(User user){
         Parent root = categories.getParent();
         double screenFactor = root.getScene().getWidth() / 1080;
         root.setStyle("-fx-font-size: " + (14 * screenFactor) + "px");
-        username.setText(user);
     }
 
     public void onHelpClicked(MouseEvent mouseEvent) throws IOException {

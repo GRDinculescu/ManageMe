@@ -1,11 +1,15 @@
 package com.manageme.controllers;
 
+import com.google.gson.Gson;
 import com.manageme.InventarioApp;
+import com.manageme.models.User;
+import com.manageme.util.Functions;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -13,8 +17,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.Properties;
 
 public class LoginController {
     @FXML Label errMsg;
@@ -27,6 +33,8 @@ public class LoginController {
     @FXML Label lblUser;
     @FXML ImageView imgLoginLogo;
     @FXML TextField tfdUserForget;
+
+    private final Functions functions = new Functions();
 
     @FXML
     protected void onForgetPassword() throws IOException {
@@ -46,49 +54,52 @@ public class LoginController {
 
     @FXML
     protected void onLogin() throws IOException {
-        // Todo: Cambiar esto por una base de datos, o algo asi
-        HashMap<String , String> users = new HashMap<>();
-        users.put("admin", "1111");
-        users.put("user", "1111");
-        users.put("manager", "1111");
+        Properties properties = new Properties();
 
-        String user = tfdUser.getText();
-        // Todo: Cambiar el password a hash, si nos da tiempo :)
+        String username = tfdUser.getText();
         String password = tfdPasswd.getText();
 
-        if (!users.containsKey(user)) {
-            errMsg.setText("No se encontró el usuario");
-            return;
-        }
+        try (FileReader fr = new FileReader("users.properties")) {
+            properties.load(fr); // Cargamos el archivo de usuarios
 
-        if (!users.get(user).equals(password)){
-            errMsg.setText("Contraseña incorrecta");
-            return;
-        }
-
-        switch (user) {
-            case "admin" -> {
-                // lblMsg.setText(" Bienvenido administrador!");
-                FXMLLoader fxmlLoader = new FXMLLoader(InventarioApp.class.getResource("main-view.fxml"));
-                Parent root = fxmlLoader.load();
-                Scene mainScene = new Scene(root);
-                Stage stage = (Stage) tfdUser.getScene().getWindow();
-
-                MainController mainController = fxmlLoader.getController();
-                mainController.initData(user);
-
-                stage.hide();
-                stage.setScene(mainScene);
-                stage.show();
-                Platform.runLater(() -> {
-                    stage.setMaximized(true);
-                    stage.requestFocus();
-                    stage.toFront();
-                });
+            if (!properties.containsKey(username)) { // Verificamos si existe
+                functions.showAlert("Login error", "No se encontró el usuario", Alert.AlertType.ERROR);
+                return;
             }
-            case "manager" -> {}
-            case "user" -> {}
-        }
-    }
 
+            if (!properties.getProperty(username).equals(password)) { // Verificamos si la contraseña coincide
+                functions.showAlert("Login error", "La contraseña no coincide", Alert.AlertType.ERROR);
+                return;
+            }
+        } catch (FileNotFoundException e) { // Si no se encuentra el archivo de usuarios
+            functions.showAlert("File error", "No se encontró el archivo de usuario", Alert.AlertType.ERROR);
+            return;
+        }
+
+        Gson gson = new Gson();
+        User user;
+        try (FileReader fr = new FileReader("users.json")) {
+            user = gson.fromJson(fr, User.class);
+        } catch (FileNotFoundException e) {// Si no se encuentra el archivo de usuarios
+            functions.showAlert("File error", "No se encontró el archivo de usuario", Alert.AlertType.ERROR);
+            return;
+        }
+
+        FXMLLoader fxmlLoader = new FXMLLoader(InventarioApp.class.getResource("main-view.fxml"));
+        Parent root = fxmlLoader.load();
+        Scene mainScene = new Scene(root);
+        Stage stage = (Stage) tfdUser.getScene().getWindow();
+
+        MainController mainController = fxmlLoader.getController();
+        mainController.initData(user);
+
+        stage.hide();
+        stage.setScene(mainScene);
+        stage.show();
+        Platform.runLater(() -> {
+            stage.setMaximized(true);
+            stage.requestFocus();
+            stage.toFront();
+        });
+    }
 }
