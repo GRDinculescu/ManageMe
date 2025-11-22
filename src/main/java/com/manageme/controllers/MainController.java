@@ -25,7 +25,6 @@ public class MainController {
     @FXML VBox filtres;
 
     @FXML MenuBarController menubarController;
-    User user;
 
     private boolean viewFiltres = false;
 

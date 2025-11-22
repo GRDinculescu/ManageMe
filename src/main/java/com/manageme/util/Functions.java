@@ -12,6 +12,15 @@ import java.util.Calendar;
 import java.util.List;
 
 public class Functions {
+    private File documents;
+    private static Functions instance;
+    private Functions() {}
+
+    public static Functions getFunctions(){
+        if (instance == null) instance = new Functions();
+        return instance;
+    }
+
     public void showAlert(String title, String msg, Alert.AlertType alertType){
         System.err.println(msg);
         Alert alert = new Alert(alertType);
@@ -22,7 +31,7 @@ public class Functions {
 
     public File generateFiles() throws IOException {
         // Genera nuestra carpeta en documentos
-        File documents = new File(System.getProperty("user.home"), "Documents/ManageMe");
+        if (documents == null) documents = new File(System.getProperty("user.home"), "Documents/ManageMe");
         if(documents.mkdir()) System.out.printf("Carpeta generada en %s%n", documents.getAbsolutePath());
 
         // Genera el archivo de usuarios
@@ -56,5 +65,13 @@ public class Functions {
             }
         }
         return usersFile;
+    }
+
+    public File getDocuments() {
+        return documents;
+    }
+
+    public void setDocuments(File documents) {
+        this.documents = documents;
     }
 }

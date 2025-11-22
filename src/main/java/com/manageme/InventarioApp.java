@@ -20,7 +20,7 @@ import java.time.LocalDate;
 import java.util.*;
 
 public class InventarioApp extends Application {
-    private final Functions functions = new Functions();
+    private final Functions functions = Functions.getFunctions();
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -28,7 +28,7 @@ public class InventarioApp extends Application {
         Parent root = fxmlLoader.load();
 
         LoginController lc = fxmlLoader.getController();
-        lc.initData(functions.generateFiles(), functions);
+        lc.initData(functions.generateFiles());
 
         Scene scene = new Scene(root);
         stage.setTitle("Inicia sesión!");

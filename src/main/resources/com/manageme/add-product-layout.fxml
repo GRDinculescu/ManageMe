@@ -29,7 +29,7 @@
                     </VBox>
                     <VBox>
                         <Label styleClass="ts-3, bold" text="CANTIDAD" />
-                        <TextField styleClass="ts-2, mxw-100" />
+                        <TextField fx:id="quantity" styleClass="ts-2, mxw-100" />
                     </VBox>
                     <Region HBox.hgrow="ALWAYS"/>
                     <Button text="X" styleClass="ts-3, bold" onAction="#onCloseClick"/>
@@ -37,11 +37,11 @@
                 <HBox spacing="50">
                     <VBox>
                         <Label styleClass="ts-3, bold" text="DESCRIPCION" />
-                        <TextArea styleClass="ts-2, mxw-500, mxh-75" wrapText="true"/>
+                        <TextArea fx:id="desc" styleClass="ts-2, mxw-500, mxh-75" wrapText="true"/>
                     </VBox>
                     <VBox styleClass="w-250">
                         <Label styleClass="ts-3, bold" text="PROVEEDOR" />
-                        <ComboBox styleClass="ts-2, mxw-200" />
+                        <ComboBox fx:id="supplier" styleClass="ts-2, mxw-200" />
                     </VBox>
                 </HBox>
             </VBox>
@@ -49,17 +49,17 @@
         <HBox spacing="20">
             <VBox styleClass="w-250">
                 <Label styleClass="ts-3, bold" text="CATEGORIA" />
-                <ComboBox styleClass="ts-2, mxw-200"/>
+                <ComboBox fx:id="cat" styleClass="ts-2, mxw-200"/>
             </VBox>
             <Region HBox.hgrow="ALWAYS" />
             <VBox styleClass="w-250">
                 <Label styleClass="ts-3, bold" text="SUB-CATEGORIA" />
-                <ComboBox styleClass="ts-2, mxw-200" />
+                <ComboBox fx:id="subcat" styleClass="ts-2, mxw-200" />
             </VBox>
             <Region HBox.hgrow="ALWAYS" />
             <VBox styleClass="w-250">
                 <Label styleClass="ts-3, bold" text="MARCA" />
-                <ComboBox styleClass="ts-2, mxw-200" />
+                <ComboBox fx:id="brand" styleClass="ts-2, mxw-200" />
             </VBox>
             <Region HBox.hgrow="ALWAYS" />
             <Button styleClass="ts-2, bold, bc-red, round-1" text="BORRAR" onAction="#onDeleteClick"/>

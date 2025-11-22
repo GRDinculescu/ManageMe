@@ -37,12 +37,11 @@ public class LoginController {
     @FXML ImageView imgLoginLogo;
     @FXML TextField tfdUserForget;
 
-    private Functions functions;
+    private final Functions functions = Functions.getFunctions();
 
     private File users;
 
-    public void initData(File users, Functions functions){
-        this.functions = functions;
+    public void initData(File users){
         this.users = users;
     }
 
