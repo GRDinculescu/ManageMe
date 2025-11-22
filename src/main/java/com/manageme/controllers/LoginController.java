@@ -1,8 +1,6 @@
 package com.manageme.controllers;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import com.manageme.InventarioApp;
 import com.manageme.models.User;
@@ -26,7 +24,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.List;
-import java.util.Properties;
 
 public class LoginController {
     @FXML Label errMsg;
@@ -40,11 +37,12 @@ public class LoginController {
     @FXML ImageView imgLoginLogo;
     @FXML TextField tfdUserForget;
 
-    private final Functions functions = new Functions();
+    private Functions functions;
 
     private File users;
 
-    public void initData(File users){
+    public void initData(File users, Functions functions){
+        this.functions = functions;
         this.users = users;
     }
 
