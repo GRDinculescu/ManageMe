@@ -9,7 +9,7 @@
 
 <HBox xmlns="http://javafx.com/javafx"
       stylesheets="@styles/styles.css"
-      HBox.hgrow="ALWAYS" styleClass="bc-cyan, round-3"
+      HBox.hgrow="ALWAYS" styleClass="bc-lgray, round-2"
       spacing="25" alignment="CENTER_LEFT">
     <padding>
         <Insets top="10" bottom="10" left="10" right="25"/>

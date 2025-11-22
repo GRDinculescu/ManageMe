@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<VBox   fx:id="root"
+        xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.manageme.controllers.AddProductAdmin"
+        maxHeight="-Infinity" maxWidth="-Infinity" spacing="50" styleClass="bc-dark, round-4" visible="false" managed="false">
+        <padding>
+            <Insets bottom="25" top="25" left="30" right="30"/>
+        </padding>
+        <HBox spacing="20">
+            <ImageView pickOnBounds="true" preserveRatio="true" styleClass="fw-200">
+                <Image url="@../../drawable/face.png" />
+            </ImageView>
+            <VBox spacing="20" HBox.hgrow="ALWAYS">
+                <HBox spacing="50">
+                    <VBox>
+                        <Label styleClass="ts-3, bold" text="NOMBRE" />
+                        <TextField fx:id="name" styleClass="ts-2" />
+                    </VBox>
+                    <VBox>
+                        <Label styleClass="ts-3, bold" text="PRECIO" />
+                        <TextField fx:id="price" styleClass="ts-2, mxw-100" />
+                    </VBox>
+                    <VBox>
+                        <Label styleClass="ts-3, bold" text="CANTIDAD" />
+                        <TextField styleClass="ts-2, mxw-100" />
+                    </VBox>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Button text="X" styleClass="ts-3, bold" onAction="#onCloseClick"/>
+                </HBox>
+                <HBox spacing="50">
+                    <VBox>
+                        <Label styleClass="ts-3, bold" text="DESCRIPCION" />
+                        <TextArea styleClass="ts-2, mxw-500, mxh-75" wrapText="true"/>
+                    </VBox>
+                    <VBox styleClass="w-250">
+                        <Label styleClass="ts-3, bold" text="PROVEEDOR" />
+                        <ComboBox styleClass="ts-2, mxw-200" />
+                    </VBox>
+                </HBox>
+            </VBox>
+        </HBox>
+        <HBox spacing="20">
+            <VBox styleClass="w-250">
+                <Label styleClass="ts-3, bold" text="CATEGORIA" />
+                <ComboBox styleClass="ts-2, mxw-200"/>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS" />
+            <VBox styleClass="w-250">
+                <Label styleClass="ts-3, bold" text="SUB-CATEGORIA" />
+                <ComboBox styleClass="ts-2, mxw-200" />
+            </VBox>
+            <Region HBox.hgrow="ALWAYS" />
+            <VBox styleClass="w-250">
+                <Label styleClass="ts-3, bold" text="MARCA" />
+                <ComboBox styleClass="ts-2, mxw-200" />
+            </VBox>
+            <Region HBox.hgrow="ALWAYS" />
+            <Button styleClass="ts-2, bold, bc-red, round-1" text="BORRAR" onAction="#onDeleteClick"/>
+            <Button styleClass="ts-2, bold, bc-cyan, round-1" text="CONFIRMAR" onAction="#onSaveClick"/>
+        </HBox>
+</VBox>

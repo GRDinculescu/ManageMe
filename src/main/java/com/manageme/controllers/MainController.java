@@ -19,13 +19,17 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class MainController {
+    @FXML VBox addMenuAdmin;
     @FXML VBox root;
     @FXML VBox categories;
     @FXML VBox filtres;
 
     private boolean viewFiltres = false;
 
+    private User user;
+
     void initData(User user){
+        this.user = user;
         double screenFactor = root.getScene().getWidth() / 1080;
         root.setStyle("-fx-font-size: " + (14 * screenFactor) + "px");
     }
@@ -38,5 +42,14 @@ public class MainController {
         categories.setVisible(!viewFiltres);
         filtres.setManaged(viewFiltres);
         filtres.setVisible(viewFiltres);
+    }
+
+    public void onAddClick(ActionEvent actionEvent) {
+        if (user.getRol().equalsIgnoreCase("admin") ||
+            user.getRol().equalsIgnoreCase("manager")){
+
+            addMenuAdmin.setManaged(true);
+            addMenuAdmin.setVisible(true);
+        }
     }
 }
