@@ -34,7 +34,6 @@ public class MainController {
         this.user = user;
         double screenFactor = root.getScene().getWidth() / 1080;
         root.setStyle("-fx-font-size: " + (14 * screenFactor) + "px");
-        this.user = user;
         menubarController.initData(user); // Inicializar el menuBar (importante)
     }
 
