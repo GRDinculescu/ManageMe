@@ -10,8 +10,9 @@ public class User {
     String email;
     String street;
     String rol;
+    String password;
 
-    public User(String name, String lastname, int phone, Date bday, String email, String street, String rol) {
+    public User(String name, String lastname, int phone, Date bday, String email, String street, String rol, String password) {
         this.name = name;
         this.lastname = lastname;
         this.phone = phone;
@@ -19,6 +20,7 @@ public class User {
         this.email = email;
         this.street = street;
         this.rol = rol;
+        this.password = password;
     }
 
     public String getName() {
@@ -75,5 +77,13 @@ public class User {
 
     public void setRol(String rol) {
         this.rol = rol;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

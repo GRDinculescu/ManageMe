@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<?import org.controlsfx.control.RangeSlider?>
+<VBox xmlns="http://javafx.com/javafx"
+      spacing="25" styleClass="ts-2, bc-lgray, round-3" >
+    <padding>
+        <Insets left="25" right="25" top="25" bottom="25"/>
+    </padding>
+    <!---->
+    <VBox>
+        <Label text="Precio" styleClass="bold"/>
+        <HBox spacing="100">
+            <TextField styleClass="w-100">
+                <HBox.margin>
+                    <Insets bottom="20"/>
+                </HBox.margin>
+            </TextField>
+            <Region HBox.hgrow="ALWAYS"/>
+            <TextField styleClass="w-100" />
+        </HBox>
+        <RangeSlider styleClass="ts-2" min="0" max="1000" highValue="1000"/>
+    </VBox>
+    <!---->
+    <VBox>
+        <Label text="Stock" styleClass="bold" />
+        <HBox spacing="100">
+            <TextField styleClass="w-100">
+                <HBox.margin>
+                    <Insets bottom="20"/>
+                </HBox.margin>
+            </TextField>
+            <Region HBox.hgrow="ALWAYS"/>
+            <TextField styleClass="w-100" />
+        </HBox>
+        <RangeSlider styleClass="ts-2" min="0" max="1000" highValue="1000"/>
+    </VBox>
+
+    <Region VBox.vgrow="ALWAYS"/>
+
+    <!---->
+    <HBox>
+        <VBox styleClass="w-150">
+            <Label text="Marca" />
+            <ComboBox styleClass="mxw-inf"/>
+        </VBox>
+
+        <Region HBox.hgrow="ALWAYS" />
+
+        <VBox alignment="CENTER_RIGHT" styleClass="w-150">
+            <Label text="Proveedor" />
+            <ComboBox styleClass="mxw-inf"/>
+        </VBox>
+    </HBox>
+
+    <!---->
+    <HBox spacing="20">
+        <VBox styleClass="w-150">
+            <Label text="Categoria" />
+            <ComboBox styleClass="mxw-inf"/>
+        </VBox>
+
+        <Region HBox.hgrow="ALWAYS" />
+
+        <VBox alignment="CENTER_RIGHT" styleClass="w-150">
+            <Label text="Subcategoría" />
+            <ComboBox styleClass="mxw-inf"/>
+        </VBox>
+    </HBox>
+
+    <Region VBox.vgrow="ALWAYS"/>
+
+    <!---->
+    <HBox>
+        <CheckBox text="Comprable" />
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="Buscar" styleClass="ts-2"/>
+    </HBox>
+</VBox>

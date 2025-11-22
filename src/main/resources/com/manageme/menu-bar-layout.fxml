@@ -10,7 +10,7 @@
         fx:controller="com.manageme.controllers.MenuBarController"
         style="-fx-background-color: lightblue;">
         <padding>
-            <Insets bottom="20" left="20" right="20" top="20" />
+            <Insets bottom="10" left="10" right="10" top="10" />
         </padding>
 
         <!-- logo -->
@@ -23,22 +23,22 @@
         <HBox alignment="CENTER" spacing="25.0">
 
             <!-- notificaciones -->
-            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                 <Image url="@../../drawable/notifications.png" />
             </ImageView>
 
             <!-- ayuda -->
-            <ImageView fitHeight="60.0" fitWidth="60.0" onMouseClicked="#onHelpClicked" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitWidth="60.0" onMouseClicked="#onHelpClicked" pickOnBounds="true" preserveRatio="true">
                 <Image url="@../../drawable/help.png" />
             </ImageView>
 
             <!-- menu -->
-            <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                 <Image url="@../../drawable/menu.png" />
             </ImageView>
 
             <!-- usuario -->
-            <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                 <Image url="@../../drawable/face.png" />
             </ImageView>
         </HBox>

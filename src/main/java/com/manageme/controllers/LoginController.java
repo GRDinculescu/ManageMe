@@ -1,6 +1,9 @@
 package com.manageme.controllers;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
 import com.manageme.InventarioApp;
 import com.manageme.models.User;
 import com.manageme.util.Functions;
@@ -21,6 +24,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.List;
 import java.util.Properties;
 
 public class LoginController {
@@ -38,13 +43,10 @@ public class LoginController {
     private final Functions functions = new Functions();
 
     private File users;
-    private File passwords;
 
-    public void initData(File users, File passwords){
+    public void initData(File users){
         this.users = users;
-        this.passwords = passwords;
     }
-
 
     @FXML
     protected void onForgetPassword() throws IOException {
@@ -65,33 +67,32 @@ public class LoginController {
 
     @FXML
     protected void onLogin() throws IOException {
-        Properties properties = new Properties();
+        Gson gson = new Gson();
 
         String username = tfdUser.getText();
         String password = tfdPasswd.getText();
 
-        try (FileReader fr = new FileReader(passwords)) {
-            properties.load(fr); // Cargamos el archivo de usuarios
+        User user;
+        try (FileReader fr = new FileReader(users)) {
+            Type listType = new TypeToken<List<User>>(){}.getType();
+            List<User> users = gson.fromJson(fr, listType);
 
-            if (!properties.containsKey(username)) { // Verificamos si existe
+            // Obtengo el usuario que coincida, si no hay, es null
+            user = users.stream()
+                    .filter(u -> u.getName().equals(username))
+                    .findFirst()
+                    .orElse(null);
+
+            if (user == null) { // Verificamos si existe
                 functions.showAlert("Login error", "No se encontró el usuario", Alert.AlertType.ERROR);
                 return;
             }
 
-            if (!properties.getProperty(username).equals(password)) { // Verificamos si la contraseña coincide
+            if (!user.getPassword().equals(password)) { // Verificamos si la contraseña coincide
                 functions.showAlert("Login error", "La contraseña no coincide", Alert.AlertType.ERROR);
                 return;
             }
         } catch (FileNotFoundException e) { // Si no se encuentra el archivo de usuarios
-            functions.showAlert("File error", "No se encontró el archivo de usuario", Alert.AlertType.ERROR);
-            return;
-        }
-
-        Gson gson = new Gson();
-        User user;
-        try (FileReader fr = new FileReader(users)) {
-            user = gson.fromJson(fr, User.class);
-        } catch (FileNotFoundException e) {// Si no se encuentra el archivo de usuarios
             functions.showAlert("File error", "No se encontró el archivo de usuario", Alert.AlertType.ERROR);
             return;
         }
