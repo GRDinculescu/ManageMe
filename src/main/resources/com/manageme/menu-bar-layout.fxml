@@ -14,7 +14,7 @@
         </padding>
 
         <!-- logo -->
-        <ImageView fitHeight="75.0" fitWidth="301.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="75.0" fitWidth="301.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#onLogoClicked">
             <Image url="@../../drawable/logo_dev.png" />
         </ImageView>
         <Region HBox.hgrow="ALWAYS" />

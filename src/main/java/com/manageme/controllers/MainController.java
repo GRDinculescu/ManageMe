@@ -23,11 +23,16 @@ public class MainController {
     @FXML VBox categories;
     @FXML VBox filtres;
 
+    @FXML MenuBarController menubarController;
+    User user;
+
     private boolean viewFiltres = false;
 
     void initData(User user){
         double screenFactor = root.getScene().getWidth() / 1080;
         root.setStyle("-fx-font-size: " + (14 * screenFactor) + "px");
+        this.user = user;
+        menubarController.initData(user); // Inicializar el menuBar (importante)
     }
 
     @FXML

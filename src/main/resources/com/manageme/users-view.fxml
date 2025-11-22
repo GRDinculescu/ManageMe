@@ -5,10 +5,10 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox minHeight="600" minWidth="800" prefHeight="1080" prefWidth="1920" stylesheets="@styles/help-style.css"
+<VBox fx:id="root" minHeight="600" minWidth="800" prefHeight="1080" prefWidth="1920" stylesheets="@styles/help-style.css"
       xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.manageme.controllers.UsersController">
 
-    <fx:include source="menu-bar-layout.fxml"/>
+    <fx:include source="menu-bar-layout.fxml" fx:id="menubar"/>
 
     <ScrollPane VBox.vgrow="ALWAYS" fitToWidth="true">
         <padding>

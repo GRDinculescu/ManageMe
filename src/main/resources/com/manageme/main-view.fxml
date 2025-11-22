@@ -18,7 +18,7 @@
 <VBox fx:id="root" minHeight="600" minWidth="800" prefHeight="1080" prefWidth="1920" stylesheets="@styles/styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.manageme.controllers.MainController">
 
     <!-- menu de arriba -->
-    <fx:include source="menu-bar-layout.fxml"/>
+    <fx:include source="menu-bar-layout.fxml" fx:id="menubar"/>
 
     <!-- aplicacion -->
     <VBox spacing="30.0" VBox.vgrow="ALWAYS">

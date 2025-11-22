@@ -1,6 +1,8 @@
 package com.manageme.controllers;
 
+import com.manageme.models.User;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -34,7 +36,12 @@ public class HelpController {
     @FXML TextField tfdPasswd;
     @FXML TextField tfdUser;
 
-    void initData(String userRole){
+
+    @FXML MenuBarController menubarController;
+    @FXML VBox root;
+    User user;
+
+    void initData(User user){
         panels = Map.of(
                 "custom", form,
                 "q1", m1,
@@ -47,7 +54,7 @@ public class HelpController {
         // Todo: Hacer que las preguntas cambien según el usuario.
         //  Que le importa al usuario como agregar nuevos si no puede
 
-        switch (userRole){
+        switch (user.getRol()){
             case "admin" -> {
                 Node node = q1.getChildren().getFirst();
                 ((Label) node).setText("Como agrego un usuario");
@@ -55,6 +62,12 @@ public class HelpController {
             case "user" -> {}
             case "manager" -> {}
         }
+
+        double screenFactor = root.getScene().getWidth() / 1080;
+        root.setStyle("-fx-font-size: " + (14 * screenFactor) + "px");
+        this.user = user;
+
+        menubarController.initData(user); // Inicializar el menuBar (importante)
     }
 
     @FXML
