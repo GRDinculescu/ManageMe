@@ -60,7 +60,7 @@ public class Functions {
             return gson.fromJson(fr, type);
         } catch (IOException e) {
             Functions.showAlert("Error de archivo", "No se pudo cargar el archivo.", Alert.AlertType.ERROR);
-            return null;
+            return new ArrayList<>();
         }
     }
 
