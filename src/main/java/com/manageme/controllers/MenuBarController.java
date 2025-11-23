@@ -35,15 +35,16 @@ public class MenuBarController {
 
         menuDropdown = new ContextMenu(
                 new MenuItem("Inicio"),
-                new MenuItem("Ayuda"),
-                new MenuItem("Notificaciones")
+                new MenuItem("Usuarios"),
+                new MenuItem("Ayuda")
         );
         userDropdown = new ContextMenu(
                 new MenuItem("Perfil"),
                 new MenuItem("Cerrar sesión")
         );
         menuDropdown.getItems().get(0).setOnAction(e -> onLogoClicked());
-        menuDropdown.getItems().get(1).setOnAction(e -> onHelpClicked());
+        menuDropdown.getItems().get(1).setOnAction(e -> onUsersClicked());
+        menuDropdown.getItems().get(2).setOnAction(e -> onHelpClicked());
         userDropdown.getItems().get(1).setOnAction(e -> onLogout());
     }
 
@@ -126,6 +127,32 @@ public class MenuBarController {
         stage.setScene(scene);
         stage.setMaximized(true);
         stage.show();
+    }
+
+    @FXML
+    public void onUsersClicked() {
+        FXMLLoader fxmlLoader = new FXMLLoader(InventarioApp.class.getResource("users-view.fxml"));
+        Parent rootT = null;
+        try {
+            rootT = fxmlLoader.load();
+        } catch (IOException e) {
+            Functions.showAlert("Nav error", "Fallo cargando esa pagina", Alert.AlertType.ERROR);
+            return;
+        }
+        Scene mainScene = new Scene(rootT);
+        Stage stage = (Stage) root.getScene().getWindow();
+
+        UsersController controller = fxmlLoader.getController();
+        controller.initData(user);
+
+        stage.hide();
+        stage.setScene(mainScene);
+        stage.show();
+        Platform.runLater(() -> {
+            stage.setMaximized(true);
+            stage.requestFocus();
+            stage.toFront();
+        });
     }
 
 

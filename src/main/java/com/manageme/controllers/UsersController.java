@@ -11,8 +11,7 @@ import java.util.Map;
 
 public class UsersController {
     @FXML MenuBarController menubarController;
-    @FXML
-    VBox root;
+    @FXML VBox root;
     User user;
 
     void initData(User user){
