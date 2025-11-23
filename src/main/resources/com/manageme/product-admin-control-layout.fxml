@@ -8,7 +8,7 @@
 <?import javafx.scene.image.Image?>
 
 <VBox   fx:id="root"
-        xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.manageme.controllers.AddProductAdminController"
+        xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.manageme.controllers.ProductAdminController"
         maxHeight="-Infinity" maxWidth="-Infinity" spacing="50" styleClass="bc-dark">
         <padding>
             <Insets bottom="25" top="25" left="30" right="30"/>
@@ -39,9 +39,13 @@
                         <Label styleClass="ts-3, bold" text="DESCRIPCION" />
                         <TextArea fx:id="desc" styleClass="ts-2, mxw-500, mxh-75" wrapText="true"/>
                     </VBox>
-                    <VBox styleClass="w-250">
+                    <VBox styleClass="w-200">
                         <Label styleClass="ts-3, bold" text="PROVEEDOR" />
                         <ComboBox fx:id="supplier" styleClass="ts-2, mxw-200" />
+                    </VBox>
+                    <VBox styleClass="w-200">
+                        <Label styleClass="ts-3, bold" text="MARCA" />
+                        <ComboBox fx:id="brand" styleClass="ts-2, mxw-200" />
                     </VBox>
                 </HBox>
             </VBox>
@@ -51,18 +55,13 @@
                 <Label styleClass="ts-3, bold" text="CATEGORIA" />
                 <ComboBox fx:id="cat" styleClass="ts-2, mxw-200"/>
             </VBox>
-            <Region HBox.hgrow="ALWAYS" />
             <VBox styleClass="w-250">
                 <Label styleClass="ts-3, bold" text="SUB-CATEGORIA" />
                 <ComboBox fx:id="subcat" styleClass="ts-2, mxw-200" />
             </VBox>
             <Region HBox.hgrow="ALWAYS" />
-            <VBox styleClass="w-250">
-                <Label styleClass="ts-3, bold" text="MARCA" />
-                <ComboBox fx:id="brand" styleClass="ts-2, mxw-200" />
-            </VBox>
-            <Region HBox.hgrow="ALWAYS" />
-            <Button fx:id="deleteButton" styleClass="ts-2, bold, bc-red, round-1" text="BORRAR" onAction="#onDeleteClick"/>
-            <Button styleClass="ts-2, bold, bc-cyan, round-1" text="CONFIRMAR" onAction="#onSaveClick"/>
+            <Button fx:id="deleteButton" styleClass="ts-3, bold, bc-red, round-1" text="BORRAR" onAction="#onDeleteClick"/>
+            <Button fx:id="addButton" styleClass="ts-3, bold, bc-cyan, round-1" text="AGREGAR" onAction="#onAddClick"/>
+            <Button fx:id="editButton" styleClass="ts-3, bold, bc-cyan, round-1" text="EDITAR" onAction="#onEditClick"/>
         </HBox>
 </VBox>

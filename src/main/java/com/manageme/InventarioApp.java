@@ -1,22 +1,14 @@
 package com.manageme;
 
-import com.google.gson.Gson;
 import com.manageme.controllers.LoginController;
-import com.manageme.models.User;
 import com.manageme.util.Functions;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.time.Instant;
-import java.time.LocalDate;
 import java.util.*;
 
 public class InventarioApp extends Application {
@@ -28,7 +20,8 @@ public class InventarioApp extends Application {
         Parent root = fxmlLoader.load();
 
         LoginController lc = fxmlLoader.getController();
-        lc.initData(functions.generateFiles());
+        functions.generateFiles();
+        lc.initData();
 
         Scene scene = new Scene(root);
         stage.setTitle("Inicia sesión!");

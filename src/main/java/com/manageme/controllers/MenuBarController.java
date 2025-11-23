@@ -120,13 +120,10 @@ public class MenuBarController {
         Functions functions = Functions.getFunctions();
 
         LoginController lc = fxmlLoader.getController();
-        try {
-            lc.initData(functions.generateFiles());
-        } catch (IOException e) { // FIXME: no deberia poner eso ahi @tesmes71 revisa esto
-            Functions.showAlert("Functions error", "Y yo que se que es esto, ayuda", Alert.AlertType.ERROR);
-            return;
-        }
+        lc.initData();
 
+        // TODO: Hacer que no este maximizado.
+        //  Quitar el setMaximized no funciona :(
         Scene scene = new Scene(rootT);
         Stage stage = (Stage) root.getScene().getWindow();
         stage.setTitle("Inicia sesión!");
@@ -164,7 +161,8 @@ public class MenuBarController {
     @FXML
     public void onNotificationClicked(){
 
-        List<Notification> notifications = Functions.getFunctions().loadJSON("notifications.json", Notification.class);
+        List<Notification> notifications = Functions.readJson(Notification.class, Functions.getNotificationsFile());
+        if (notifications == null) return;
 
         List<MenuItem> items = new ArrayList<>();
 

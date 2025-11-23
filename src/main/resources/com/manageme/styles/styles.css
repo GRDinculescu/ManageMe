@@ -1,6 +1,9 @@
 .mxw-inf { -fx-max-width: Infinity; }
 .mxw-wrap { -fx-max-width: -Infinity; }
 
+.mxh-inf { -fx-max-height: Infinity; }
+.mxh-wrap { -fx-max-height: -Infinity; }
+
 .w-25 { -fx-pref-width: 25px; }
 .w-50 { -fx-pref-width: 50px; }
 .w-75 { -fx-pref-width: 75px; }

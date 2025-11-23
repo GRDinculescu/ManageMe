@@ -22,15 +22,21 @@
         <padding>
             <Insets top="20" bottom="20" right="30"/>
         </padding>
-        <Label fx:id="name" text="Nombre del producto 1" styleClass="ts-3"/>
-        <Region VBox.vgrow="ALWAYS"/>
-        <HBox HBox.hgrow="ALWAYS">
-            <Label fx:id="category" text="Categoria" styleClass="ts-2"/>
+        <HBox>
+            <Label fx:id="name" text="Nombre del producto 1" styleClass="ts-3"/>
             <Region HBox.hgrow="ALWAYS"/>
+            <TextArea fx:id="description" wrapText="true" disable="true" styleClass="ts-2, mxw-500, mxh-25"/>
+            <Button onAction="#onMoreClick" text="Mas" styleClass="mxh-inf, ts-2, bold"/>
+        </HBox>
+        <Region VBox.vgrow="ALWAYS"/>
+        <HBox HBox.hgrow="ALWAYS" spacing="20">
+            <Label fx:id="category" text="Categoria" styleClass="ts-2"/>
+            <Label fx:id="subcategory" text="Subcategoria" styleClass="ts-2"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="supplier" text="Proveedor" styleClass="ts-2"/>
             <Label fx:id="brand" text="Marca" styleClass="ts-2"/>
             <Region HBox.hgrow="ALWAYS"/>
             <Label fx:id="price" text="Precio" styleClass="ts-2"/>
-            <Region HBox.hgrow="ALWAYS"/>
             <Label fx:id="quantity" text="Unidades" styleClass="ts-2"/>
         </HBox>
     </VBox>

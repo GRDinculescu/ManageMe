@@ -39,10 +39,10 @@ public class LoginController {
 
     private final Functions functions = Functions.getFunctions();
 
-    private File users;
+    private File usersFile;
 
-    public void initData(File users){
-        this.users = users;
+    public void initData(){
+        this.usersFile = Functions.getUsersFile();
     }
 
     @FXML
@@ -70,28 +70,22 @@ public class LoginController {
         String username = tfdUser.getText();
         String password = tfdPasswd.getText();
 
-        User user;
-        try (FileReader fr = new FileReader(users)) {
-            Type listType = new TypeToken<List<User>>(){}.getType();
-            List<User> users = gson.fromJson(fr, listType);
+        List<User> users = Functions.readJson(User.class, usersFile);
+        if (users == null) return;
 
-            // Obtengo el usuario que coincida, si no hay, es null
-            user = users.stream()
-                    .filter(u -> u.getName().equals(username))
-                    .findFirst()
-                    .orElse(null);
+        // Obtengo el usuario que coincida, si no hay, es null
+        User user = users.stream()
+                .filter(u -> u.getName().equals(username))
+                .findFirst()
+                .orElse(null);
 
-            if (user == null) { // Verificamos si existe
-                Functions.showAlert("Login error", "No se encontró el usuario", Alert.AlertType.ERROR);
-                return;
-            }
+        if (user == null) { // Verificamos si existe
+            Functions.showAlert("Error de login", "No se encontró el usuario", Alert.AlertType.ERROR);
+            return;
+        }
 
-            if (!user.getPassword().equals(password)) { // Verificamos si la contraseña coincide
-                Functions.showAlert("Login error", "La contraseña no coincide", Alert.AlertType.ERROR);
-                return;
-            }
-        } catch (FileNotFoundException e) { // Si no se encuentra el archivo de usuarios
-            Functions.showAlert("File error", "No se encontró el archivo de usuario", Alert.AlertType.ERROR);
+        if (!user.getPassword().equals(password)) { // Verificamos si la contraseña coincide
+            Functions.showAlert("Error de login", "La contraseña no coincide", Alert.AlertType.ERROR);
             return;
         }
 
