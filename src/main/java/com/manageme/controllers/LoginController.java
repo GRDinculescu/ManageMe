@@ -65,8 +65,6 @@ public class LoginController {
     protected void onLogin() throws IOException {
         Gson gson = new Gson();
 
-        functions.sendNotification("Intentando acceder", "System");
-
         String username = tfdUser.getText();
         String password = tfdPasswd.getText();
 

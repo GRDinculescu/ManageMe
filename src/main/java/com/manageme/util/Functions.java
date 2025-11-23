@@ -77,19 +77,13 @@ public class Functions {
     public <T> List<T> loadJSON(String fileT, Class<T> clazz) {
         File file = new File(documents, fileT);
         List<T> data = null;
-        try {
-            if (file.createNewFile())
-                System.out.println("Generated file");
 
-            try (FileReader fr = new FileReader(file)) {
-                Gson gson = new Gson();
-                Type type = TypeToken.getParameterized(List.class, clazz).getType();
-                data = gson.fromJson(fr, type);
-            } catch (IOException e) {
-                Functions.showAlert("Error de archivo", "No se pudo cargar los datos.", Alert.AlertType.ERROR);
-            }
+        try (FileReader fr = new FileReader(file)) {
+            Gson gson = new Gson();
+            Type type = TypeToken.getParameterized(List.class, clazz).getType();
+            data = gson.fromJson(fr, type);
         } catch (IOException e) {
-            Functions.showAlert("Error de archivo", "No se pudo generar el archivo.", Alert.AlertType.ERROR);
+            Functions.showAlert("Error de archivo", "No se pudo cargar los datos.", Alert.AlertType.ERROR);
         }
 
         return (data != null) ? data : new ArrayList<>();

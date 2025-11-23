@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<HBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.manageme.controllers.UserController"
+      stylesheets="@styles/styles.css"
+      HBox.hgrow="ALWAYS" styleClass="bc-lgray, round-2"
+      spacing="25" alignment="CENTER_LEFT">
+    <padding>
+        <Insets top="10" bottom="10" left="10" right="25"/>
+    </padding>
+    <ImageView styleClass="fw-150" preserveRatio="true">
+        <Image url="@../../drawable/face.png"/>
+    </ImageView>
+    <VBox style="-fx-font-size: 30px;" alignment="CENTER">
+        <HBox spacing="50">
+            <Label fx:id="name" text="Nombre: nombre"/>
+            <Label fx:id="lastname" text="Apellido: apellido"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="rol" text="Rol: rol"/>
+        </HBox>
+        <HBox spacing="50">
+            <Label fx:id="phone" text="Teléfono: +34 123 456 789"/>
+            <Label fx:id="bday" text="F.Nac: 01/01/1999"/>
+        </HBox>
+        <HBox spacing="50">
+            <Label fx:id="email" text="Correo: usuario@correo.es"/>
+            <Label fx:id="street" text="Domicilio: C/De calle, 24"/>
+            <Label fx:id="password" text="Contraseña: ****************"/>
+        </HBox>
+    </VBox>
+    <Button text="EDITAR" onAction="#onEditClick" styleClass="h-125, w-125, round-2, bold, ts-2"/>
+</HBox>
