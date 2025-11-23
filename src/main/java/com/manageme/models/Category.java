@@ -6,7 +6,7 @@ public class Category {
     List<String> subcategories;
     String name;
 
-    public Category(List<String> subcategories, String name) {
+    public Category(String name, List<String> subcategories) {
         this.subcategories = subcategories;
         this.name = name;
     }

@@ -65,7 +65,7 @@ public class LoginController {
     protected void onLogin() throws IOException {
         Gson gson = new Gson();
 
-        functions.sendNotification("Intentando acceder", "System");
+        Functions.sendNotification("Intentando acceder", "System");
 
         String username = tfdUser.getText();
         String password = tfdPasswd.getText();
@@ -88,6 +88,8 @@ public class LoginController {
             Functions.showAlert("Error de login", "La contraseña no coincide", Alert.AlertType.ERROR);
             return;
         }
+
+        Functions.setMainUser(user);
 
         FXMLLoader fxmlLoader = new FXMLLoader(InventarioApp.class.getResource("main-view.fxml"));
         Parent root = fxmlLoader.load();

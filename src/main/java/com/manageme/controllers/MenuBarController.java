@@ -35,8 +35,6 @@ public class MenuBarController {
     @FXML ImageView notificationIcon;
 
     void initData(User user){
-        double screenFactor = root.getScene().getWidth() / 1080;
-        root.setStyle("-fx-font-size: " + (14 * screenFactor) + "px");
         this.user = user;
 
         menuDropdown = new ContextMenu(

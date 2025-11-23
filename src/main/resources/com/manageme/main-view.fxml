@@ -12,6 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.control.ListView?>
 <VBox fx:id="root" minHeight="600" minWidth="800" prefHeight="1080" prefWidth="1920" stylesheets="@styles/styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.manageme.controllers.MainController">
 
     <!-- menu de arriba -->
@@ -54,39 +55,18 @@
         <HBox spacing="30.0" VBox.vgrow="ALWAYS">
 
             <!-- botones de categoria -->
-            <VBox fx:id="categories" alignment="CENTER" spacing="20" managed="false" visible="false">
-                <HBox spacing="20">
-                    <Button styleClass="h-150, w-150, ts-3, bold, round-3, bc-dred" text="Carne" />
-                    <Button styleClass="h-150, w-150, ts-3, bold, round-3, bc-green" text="Verdura" />
-                    <Button styleClass="h-150, w-150, ts-3, bold, round-3, bc-lgreen" text="Fruta" />
-                </HBox>
-                <HBox spacing="20">
-                    <Button styleClass="h-150, w-150, ts-3, bold, round-3, bc-lred" text="Bebidas" />
-                    <Button styleClass="h-150, w-150, ts-3, bold, round-3, bc-lgray" text="Utensilios" />
-                    <Button styleClass="h-150, w-150, ts-3, bold, round-3, bc-dgray" text="Pescaderia" />
-                </HBox>
-                <HBox spacing="20">
-                    <Button styleClass="h-150, w-150, ts-3, bold, round-3, bc-lbrown" text="Panaderia" />
-                    <Button styleClass="h-150, w-150, ts-3, bold, round-3, bc-green" text="Categoria 8" />
-                    <Button styleClass="h-150, w-150, ts-3, bold, round-3, bc-lblue" text="Categoria 9" />
-                </HBox>
-                <HBox spacing="20">
-                    <Button styleClass="h-150, w-150, ts-3, bold, round-3, bc-dgreen" text="Categoria 10" />
-                    <Button styleClass="h-150, w-150, ts-3, bold, round-3, bc-dorange" text="Categoria 11" />
-                    <Button styleClass="h-150, w-150, ts-3, bold, round-3, bc-dcyan" text="Categoria 12" />
-                </HBox>
-            </VBox>
+            <VBox fx:id="categories" alignment="CENTER" spacing="20" managed="false" visible="false"/>
 
             <!-- filtros -->
             <fx:include fx:id="filtres" source="filtres-layout.fxml" />
 
             <!-- los productos -->
-            <ScrollPane fitToWidth="true" HBox.hgrow="ALWAYS">
-                <VBox fx:id="productsView" spacing="20">
+            <ScrollPane fitToWidth="true" HBox.hgrow="ALWAYS" fitToHeight="true">
+                <ListView fx:id="productsView">
                     <padding>
                         <Insets bottom="20" left="20" right="20" top="20" />
                     </padding>
-                </VBox>
+                </ListView>
             </ScrollPane>
         </HBox>
     </VBox>

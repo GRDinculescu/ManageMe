@@ -3,6 +3,7 @@ package com.manageme.controllers;
 import com.google.gson.Gson;
 import com.manageme.models.Product;
 import com.manageme.util.Functions;
+import com.manageme.util.ProductObervable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -27,16 +28,11 @@ public class ProductAdminController {
     private String oldBrand, oldSubCategory, oldCategory,
         oldSupplier, oldDesc, oldQuantity, oldPrice, oldName;
 
-    public void initialize(){
-        getOldValues();
-    }
-
-    @FXML
-    public void onCloseClick(){
+    public boolean onCloseClick(){
         if (checkChanges()) {
-            Alert alert = Functions.showAlert("Cambios sin guardar",
-                    "Aun hay cambios que no has guardado. Seguro que quieres salir",
-                    Alert.AlertType.INFORMATION);
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Datos sin guardar");
+            alert.setContentText("Aun hay datos sin guardar.\n¿Seguro que quieres salir?");
             ButtonType buttonYes = new ButtonType("Si");
             ButtonType buttonNo = new ButtonType("No");
             alert.getButtonTypes().setAll(buttonYes, buttonNo);
@@ -44,13 +40,30 @@ public class ProductAdminController {
             Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == buttonYes){
                 ((Stage) root.getScene().getWindow()).close();
+                return true;
             }
         }
+        return false;
     }
 
     @FXML
     public void onDeleteClick() {
-        System.out.println("BORRADO");
+        File productsFile = Functions.getProductsFile();
+        List<Product> products = Functions.readJson(Product.class, productsFile);
+        if (products != null && product != null){
+            products.remove(
+                    products.stream().filter(p -> p.getName().equalsIgnoreCase(product.getName()))
+                            .findFirst()
+                            .orElse(null)
+            );
+            Functions.writeJson(products, productsFile);
+            ProductObervable.getInstance().removeProduct(
+                    ProductObervable.getInstance().getProducts().stream().filter(p -> p.getName().equalsIgnoreCase(product.getName()))
+                            .findFirst()
+                            .orElse(null)
+            );
+        }
+        ((Stage) root.getScene().getWindow()).close();
     }
 
     @FXML
@@ -59,13 +72,21 @@ public class ProductAdminController {
 
         File productFile = Functions.getProductsFile();
         if (productFile != null){
-            Gson gson = new Gson();
             List<Product> products = Functions.readJson(Product.class, productFile);
 
             if (products == null) products = new ArrayList<>();
-            products.add(product);
+            boolean alreadyIn = products.stream()
+                    .anyMatch(p -> p.getName().equalsIgnoreCase(product.getName()));
 
-            Functions.writeJson(products, productFile);
+            if (!alreadyIn){
+                products.add(product);
+                ProductObervable.getInstance().addProduct(product);
+                Functions.writeJson(products, productFile);
+            } else {
+                Functions.showAlert("Objecto existente",
+                        "El producto que quieres insertar ya esta en la lista",
+                        Alert.AlertType.WARNING);
+            }
         }
         onCloseClick();
     }
@@ -81,6 +102,10 @@ public class ProductAdminController {
         if (products != null){
             products.remove(oldProduct);
             products.addFirst(product);
+
+            ProductObervable.getInstance().removeProduct(oldProduct);
+            ProductObervable.getInstance().addProduct(product);
+
             Functions.writeJson(products, productFile);
         }
 
@@ -120,31 +145,6 @@ public class ProductAdminController {
         return false;
     }
 
-    private File generateProductFile(){
-        String path = functions.getDocumentsFolder().getAbsolutePath();
-        try {
-            File productsFile = new File(path, "products.json");
-            if (productsFile.createNewFile()) System.out.println("Archivo de productos generado en: " + path);
-            return productsFile;
-        } catch (IOException e){
-            Functions.showAlert("Error de archivo",
-                    "No se pudo generar el archivo de productos en " + path,
-                    Alert.AlertType.ERROR);
-        }
-        return null;
-    }
-
-    private void getOldValues(){
-        oldBrand = brand.getValue();
-        oldSubCategory = subcat.getValue();
-        oldCategory = cat.getValue();
-        oldSupplier = supplier.getValue();
-        oldDesc = desc.getText();
-        oldQuantity = quantity.getText();
-        oldPrice = price.getText();
-        oldName = name.getText();
-    }
-
     private boolean checkChanges(){
         // Comparar ComboBoxes y TextFields/TextArea
         boolean brandChanged = !Objects.equals(oldBrand, brand.getValue());
@@ -180,13 +180,41 @@ public class ProductAdminController {
     }
 
     public void setInfo(Product product){
-        brand.setValue(product.getBrand());
-        subcat.setValue(product.getSubcategory());
-        cat.setValue(product.getCategory());
-        supplier.setValue(product.getSupplier());
-        desc.setText(product.getDescription());
-        quantity.setText(product.getQuantity() + "");
-        price.setText(product.getPrice() + "");
-        name.setText(product.getName());
+        this.product = product;
+
+        if (product != null){
+            // Rellenar campos con los datos del producto existente
+            brand.setValue(product.getBrand());
+            subcat.setValue(product.getSubcategory());
+            cat.setValue(product.getCategory());
+            supplier.setValue(product.getSupplier());
+            desc.setText(product.getDescription());
+            quantity.setText(product.getQuantity() + "");
+            price.setText(product.getPrice() + "");
+            name.setText(product.getName());
+
+            // Guardar valores viejos
+            oldBrand = product.getBrand();
+            oldSubCategory = product.getSubcategory();
+            oldCategory = product.getCategory();
+            oldSupplier = product.getSupplier();
+            oldDesc = product.getDescription();
+            oldQuantity = product.getQuantity() + "";
+            oldPrice = product.getPrice() + "";
+            oldName = product.getName();
+        } else {
+            // Nuevo producto: limpiar campos y no guardar "viejos"
+            brand.setValue(null);
+            subcat.setValue(null);
+            cat.setValue(null);
+            supplier.setValue(null);
+            desc.clear();
+            quantity.clear();
+            price.clear();
+            name.clear();
+
+            oldBrand = oldSubCategory = oldCategory = oldSupplier = oldDesc = oldQuantity = oldPrice = oldName = null;
+        }
     }
+
 }

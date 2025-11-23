@@ -31,8 +31,6 @@
                         <Label styleClass="ts-3, bold" text="CANTIDAD" />
                         <TextField fx:id="quantity" styleClass="ts-2, mxw-100" />
                     </VBox>
-                    <Region HBox.hgrow="ALWAYS"/>
-                    <Button text="X" styleClass="ts-3, bold" onAction="#onCloseClick"/>
                 </HBox>
                 <HBox spacing="50">
                     <VBox>

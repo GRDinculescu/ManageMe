@@ -3,24 +3,31 @@ package com.manageme.controllers;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.manageme.InventarioApp;
+import com.manageme.models.Category;
 import com.manageme.models.Product;
 import com.manageme.models.User;
 import com.manageme.util.Functions;
+import com.manageme.util.ProductCell;
+import com.manageme.util.ProductObervable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.io.File;
 import java.io.FileReader;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainController {
     private final Functions functions = Functions.getFunctions();
-    @FXML VBox productsView;
+    @FXML ListView<Product> productsView;
     @FXML VBox root;
     @FXML VBox categories;
     @FXML VBox filtres;
@@ -31,33 +38,47 @@ public class MainController {
 
     private User user;
 
-    void initData(User user){
-        this.user = user;
-        double screenFactor = root.getScene().getWidth() / 1080;
-        root.setStyle("-fx-font-size: " + (14 * screenFactor) + "px");
+    public void initialize(){
         menubarController.initData(user); // Inicializar el menuBar (importante)
-        showProducts();
+        productsView.setItems(ProductObervable.getInstance().getProducts());
+        productsView.setCellFactory(list -> new ProductCell());
+        loadCategories();
     }
 
-    private void showProducts(){
-        File documents = functions.getDocumentsFolder();
-
-        Gson gson = new Gson();
-        try (FileReader fr = new FileReader(new File(documents, "products.json"))) {
-            Type listType = new TypeToken<List<Product>>(){}.getType();
-            List<Product> products = gson.fromJson(fr, listType);
-
-            for (Product p : products){
-                FXMLLoader loader = new FXMLLoader(InventarioApp.class.getResource("product-layout.fxml"));
-                Parent root = loader.load();
-                ProductController controller = loader.getController();
-
-                controller.setData(p);
-                productsView.getChildren().addFirst(root);
+    void loadCategories(){
+        List<Category> categories = Functions.readJson(Category.class, Functions.getCategoriesFile());
+        if (categories != null){
+            List<Category[]> categoryMatrix = new ArrayList<>();
+            int index = 0;
+            for (Category c : categories){
+                if (index == 0){
+                    Category[] cat = new Category[3];
+                    cat[0] = c;
+                    categoryMatrix.add(cat);
+                } else {
+                    categoryMatrix.getLast()[index] = c;
+                }
+                index++;
+                if (index == 3) index = 0;
             }
-        } catch (Exception e){
-            Functions.showAlert("Error de archivo", "No se ha podido cargar el archivo de productos", Alert.AlertType.ERROR);
+
+            for (Category[] cm : categoryMatrix){
+                HBox hBox = new HBox();
+                hBox.setSpacing(20);
+
+                for (Category c : cm){
+                    Button b = new Button(c.getName());
+                    b.getStyleClass().addAll(("h-150, w-150, ts-3, bold, round-3, bc-lblue").split(", "));
+                    hBox.getChildren().add(b);
+                }
+
+                this.categories.getChildren().add(hBox);
+            }
         }
+    }
+
+    void initData(User user){
+        this.user = user;
     }
 
     @FXML
@@ -80,12 +101,13 @@ public class MainController {
 
             if (product != null) {   // La parte para agregar el producto al scrollView
                 FXMLLoader productLoader = new FXMLLoader(InventarioApp.class.getResource("product-layout.fxml"));
-                Parent productLayout = productLoader.load();
+                productLoader.load();
                 ProductController productController = productLoader.getController();
 
                 productController.setData(product);
-                productsView.getChildren().addFirst(productLayout);
             }
+
+            Functions.sendNotification("Se ha agregado el producto", Functions.getMainUser().getName());
         } catch (Exception e) {
             System.out.println("\n");
             e.printStackTrace();
