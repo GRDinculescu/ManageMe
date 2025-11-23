@@ -49,7 +49,7 @@
         <Label text="Usuario" />
         <TextField fx:id="tfdUserForget" maxWidth="300" />
 
-        <Button mnemonicParsing="false" text="Enviar" />
+        <Button onMouseClicked="#onForgoten" mnemonicParsing="false" text="Enviar" />
 
         <Hyperlink onAction="#onRememberPassword" text="AAAAAAAAAA. Ya me acuerdo!" />
     </VBox>

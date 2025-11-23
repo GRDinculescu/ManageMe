@@ -4,7 +4,7 @@ package com.manageme.models;
 public class Notification {
     String message;
     String user;
-    String time; // FIXME: Si, string por que me apetece
+    String time;
 
 
     public Notification(String time, String user, String message) {

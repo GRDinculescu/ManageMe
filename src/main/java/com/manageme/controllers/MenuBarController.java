@@ -41,7 +41,8 @@ public class MenuBarController {
 
         items.add(new MenuItem("Inicio"));
         items.add(new MenuItem("Ayuda"));
-        items.add(new MenuItem("Usuarios"));
+        if (!user.getRol().equals("user"))
+            items.add(new MenuItem("Usuarios"));
 
         menuDropdown = new ContextMenu();
         menuDropdown.getItems().addAll(items);
@@ -52,7 +53,8 @@ public class MenuBarController {
         );
         menuDropdown.getItems().get(0).setOnAction(e -> onLogoClicked());
         menuDropdown.getItems().get(1).setOnAction(e -> onHelpClicked());
-        menuDropdown.getItems().get(2).setOnAction(e -> onUsersClicked());
+        if (!user.getRol().equals("user"))
+            menuDropdown.getItems().get(2).setOnAction(e -> onUsersClicked());
         userDropdown.getItems().get(1).setOnAction(e -> onLogout());
     }
 

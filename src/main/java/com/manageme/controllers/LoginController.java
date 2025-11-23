@@ -40,11 +40,17 @@ public class LoginController {
     private final Functions functions = Functions.getFunctions();
 
     @FXML
-    protected void onForgetPassword() throws IOException { // TODO: Habria que hacer que esto haga algo no? Quiza una notificacion al admin?
+    protected void onForgetPassword() throws IOException {
         loginPane.setVisible(false);
         loginPane.setManaged(false);
         forgotPane.setVisible(true);
         forgotPane.setManaged(true);
+    }
+
+    @FXML
+    protected void onForgoten(){
+        Functions.sendNotification(tfdUserForget.getText()+" se ha olvidado de la contraseña", tfdUserForget.getText());
+        Functions.showAlert("Aviso", "Notificacion enviada, el administrado te contactara en breves", Alert.AlertType.INFORMATION);
     }
 
     @FXML
