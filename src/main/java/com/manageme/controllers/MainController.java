@@ -16,6 +16,8 @@ import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -24,9 +26,12 @@ import java.io.FileReader;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MainController {
     private final Functions functions = Functions.getFunctions();
+    @FXML Button addButton;
+    @FXML TextField search;
     @FXML ListView<Product> productsView;
     @FXML VBox root;
     @FXML VBox categories;
@@ -38,11 +43,30 @@ public class MainController {
 
     private User user;
 
+    private List<Product> allProducts;
+
     public void initialize(){
+        user = Functions.getMainUser();
+        if (user.getRol().equalsIgnoreCase("user")) addButton.setVisible(false);
         menubarController.initData(user); // Inicializar el menuBar (importante)
         productsView.setItems(ProductObervable.getInstance().getProducts());
         productsView.setCellFactory(list -> new ProductCell());
         loadCategories();
+        allProducts = Functions.readJson(Product.class, Functions.getProductsFile());
+//        search.textProperty().addListener((observable, oldValue, newValue) -> {
+//            onFilterChange(newValue);
+//        });
+        // Esto se buguea mucho, asi que se limita al boton :(
+    }
+
+    @FXML
+    void onFilterChange(MouseEvent event){
+        String value = search.getText().toLowerCase();
+        List<Product> products = allProducts.stream()
+                .filter(p -> p.getName().toLowerCase().contains(value))
+                .toList();
+
+        ProductObervable.getInstance().getProducts().setAll(products);
     }
 
     void loadCategories(){

@@ -21,7 +21,6 @@ public class InventarioApp extends Application {
 
         LoginController lc = fxmlLoader.getController();
         functions.generateFiles();
-        lc.initData();
 
         Scene scene = new Scene(root);
         stage.setTitle("Inicia sesión!");
