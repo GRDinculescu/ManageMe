@@ -45,13 +45,13 @@ public class AddProductAdmin {
         try {
             sellPrice = Double.parseDouble(price.getText());
         } catch (Exception e){
-            functions.showAlert("Error de valor", "Debes introducir un numero decimal.", Alert.AlertType.ERROR);
+            Functions.showAlert("Error de valor", "Debes introducir un numero decimal.", Alert.AlertType.ERROR);
             return;
         }
         try {
             quant = Integer.parseInt(quantity.getText());
         } catch (Exception e){
-            functions.showAlert("Error de valor", "Debes introducir un numero entero.", Alert.AlertType.ERROR);
+            Functions.showAlert("Error de valor", "Debes introducir un numero entero.", Alert.AlertType.ERROR);
             return;
         }
 
@@ -74,7 +74,7 @@ public class AddProductAdmin {
             try (FileReader fr = new FileReader(productFile)) {
                 products = gson.fromJson(fr, productsType);
             } catch (IOException e) {
-                functions.showAlert("Error de archivo", "No se pudo cargar los productos.", Alert.AlertType.ERROR);
+                Functions.showAlert("Error de archivo", "No se pudo cargar los productos.", Alert.AlertType.ERROR);
                 return;
             }
 
@@ -84,7 +84,7 @@ public class AddProductAdmin {
             try (FileWriter fw = new FileWriter(productFile)) {
                 gson.toJson(products, fw);
             } catch (IOException e) {
-                functions.showAlert("Error de archivo", "No se pudo guardar el archivo de productos.", Alert.AlertType.ERROR);
+                Functions.showAlert("Error de archivo", "No se pudo guardar el archivo de productos.", Alert.AlertType.ERROR);
             }
         }
     }
@@ -96,7 +96,7 @@ public class AddProductAdmin {
             if (productsFile.createNewFile()) System.out.println("Archivo de productos generado en: " + path);
             return productsFile;
         } catch (IOException e){
-            functions.showAlert("Error de archivo",
+            Functions.showAlert("Error de archivo",
                     "No se pudo generar el archivo de productos en " + path,
                     Alert.AlertType.ERROR);
         }

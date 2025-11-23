@@ -1,12 +1,16 @@
 package com.manageme.util;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.manageme.models.Product;
 import com.manageme.models.User;
 import javafx.scene.control.Alert;
 
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -65,6 +69,47 @@ public class Functions {
             }
         }
         return usersFile;
+    }
+
+    private <T> List<T> loadJSON(String fileT, Class<T> clazz) {
+        File file = new File(documents, fileT);
+        List<T> data = null;
+        try {
+            if (file.createNewFile())
+                System.out.println("Generated file");
+
+            try (FileReader fr = new FileReader(file)) {
+                Gson gson = new Gson();
+                Type type = TypeToken.getParameterized(List.class, clazz).getType();
+                data = gson.fromJson(fr, type);
+            } catch (IOException e) {
+                Functions.showAlert("Error de archivo", "No se pudo cargar los datos.", Alert.AlertType.ERROR);
+            }
+        } catch (IOException e) {
+            Functions.showAlert("Error de archivo", "No se pudo generar el archivo.", Alert.AlertType.ERROR);
+        }
+
+        return (data != null) ? data : new ArrayList<>();
+    }
+
+    private <T> boolean saveJSON(String fileT, List<T> data) {
+        File file = new File(documents, fileT);
+        try {
+            if (file.createNewFile())
+                System.out.println("Generated file");
+
+            try (FileWriter fw = new FileWriter(file)) {
+                Gson gson = new Gson();
+                gson.toJson(data, fw);
+                return true;
+            } catch (IOException e) {
+                Functions.showAlert("Error de archivo", "No se pudo guardar los datos.", Alert.AlertType.ERROR);
+            }
+        } catch (IOException e) {
+            Functions.showAlert("Error de archivo", "No se pudo generar el archivo.", Alert.AlertType.ERROR);
+        }
+
+        return false;
     }
 
     public File getDocuments() {
