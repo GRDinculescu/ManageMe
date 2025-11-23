@@ -126,7 +126,7 @@ public class Functions {
         }
 
         // Genera el archivo de usuarios
-        usersFile = new File(documentsFolder,"users.json");
+        File usersFile = new File(documentsFolder,"users.json");
         if (usersFile.createNewFile()) {
             System.out.println("Generated users file");
 

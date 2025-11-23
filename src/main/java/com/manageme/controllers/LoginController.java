@@ -65,12 +65,10 @@ public class LoginController {
     protected void onLogin() throws IOException {
         Gson gson = new Gson();
 
-        Functions.sendNotification("Intentando acceder", "System");
-
         String username = tfdUser.getText();
         String password = tfdPasswd.getText();
 
-        List<User> users = Functions.readJson(User.class, usersFile);
+        List<User> users = Functions.readJson(User.class, Functions.getUsersFile());
         if (users == null) return;
 
         // Obtengo el usuario que coincida, si no hay, es null
