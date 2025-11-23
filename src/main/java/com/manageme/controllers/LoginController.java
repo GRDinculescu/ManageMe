@@ -46,7 +46,7 @@ public class LoginController {
     }
 
     @FXML
-    protected void onForgetPassword() throws IOException {
+    protected void onForgetPassword() throws IOException { // TODO: Habria que hacer que esto haga algo no? Quiza una notificacion al admin?
         loginPane.setVisible(false);
         loginPane.setManaged(false);
         forgotPane.setVisible(true);
@@ -65,6 +65,8 @@ public class LoginController {
     @FXML
     protected void onLogin() throws IOException {
         Gson gson = new Gson();
+
+        functions.sendNotification("Intentando acceder", "System");
 
         String username = tfdUser.getText();
         String password = tfdPasswd.getText();

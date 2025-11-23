@@ -2,6 +2,7 @@
 package com.manageme.controllers;
 
 import com.manageme.InventarioApp;
+import com.manageme.models.Notification;
 import com.manageme.models.User;
 import com.manageme.util.Functions;
 import javafx.application.Platform;
@@ -18,6 +19,9 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MenuBarController {
     @FXML
@@ -25,8 +29,10 @@ public class MenuBarController {
     User user;
     @FXML ContextMenu menuDropdown;
     @FXML ContextMenu userDropdown;
+    @FXML ContextMenu notificationDropdown;
     @FXML ImageView menuIcon;
     @FXML ImageView userIcon;
+    @FXML ImageView notificationIcon;
 
     void initData(User user){
         double screenFactor = root.getScene().getWidth() / 1080;
@@ -153,6 +159,25 @@ public class MenuBarController {
             stage.requestFocus();
             stage.toFront();
         });
+    }
+
+    @FXML
+    public void onNotificationClicked(){
+
+        List<Notification> notifications = Functions.getFunctions().loadJSON("notifications.json", Notification.class);
+
+        List<MenuItem> items = new ArrayList<>();
+
+        for (Notification n : notifications){
+            MenuItem item = new MenuItem("By "+n.getUser()+" - "+n.getMessage()+" - "+n.getTime());
+            items.add(item);
+        }
+
+        notificationDropdown = new ContextMenu();
+        notificationDropdown.getItems().addAll(items);
+        hideAll();
+        notificationDropdown.show(notificationIcon, Side.BOTTOM, 0, 0);
+
     }
 
 

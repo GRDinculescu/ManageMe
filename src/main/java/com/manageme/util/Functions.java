@@ -2,6 +2,7 @@ package com.manageme.util;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.manageme.models.Notification;
 import com.manageme.models.Product;
 import com.manageme.models.User;
 import javafx.scene.control.Alert;
@@ -11,6 +12,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -71,7 +74,7 @@ public class Functions {
         return usersFile;
     }
 
-    private <T> List<T> loadJSON(String fileT, Class<T> clazz) {
+    public <T> List<T> loadJSON(String fileT, Class<T> clazz) {
         File file = new File(documents, fileT);
         List<T> data = null;
         try {
@@ -92,7 +95,7 @@ public class Functions {
         return (data != null) ? data : new ArrayList<>();
     }
 
-    private <T> boolean saveJSON(String fileT, List<T> data) {
+    public <T> boolean saveJSON(String fileT, List<T> data) {
         File file = new File(documents, fileT);
         try {
             if (file.createNewFile())
@@ -110,6 +113,12 @@ public class Functions {
         }
 
         return false;
+    }
+
+    public void sendNotification(String notification, String userName) {
+        List<Notification> notifications = loadJSON("notifications.json", Notification.class);
+        notifications.add(new Notification(LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm")), userName, notification));
+        saveJSON("notifications.json", notifications);
     }
 
     public File getDocuments() {
