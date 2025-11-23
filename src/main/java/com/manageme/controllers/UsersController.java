@@ -6,6 +6,7 @@ import com.manageme.InventarioApp;
 import com.manageme.models.Product;
 import com.manageme.models.User;
 import com.manageme.util.Functions;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -43,6 +44,9 @@ public class UsersController {
         List<User> users = Functions.readJson(User.class, Functions.getUsersFile());
 
         try {
+            if (users == null) {
+                return;
+            }
             for (User u : users){
                 FXMLLoader loader = new FXMLLoader(InventarioApp.class.getResource("user-layout.fxml"));
                 Parent root = null;
@@ -57,6 +61,5 @@ public class UsersController {
             throw new RuntimeException(e);
         }
     }
-
 
 }

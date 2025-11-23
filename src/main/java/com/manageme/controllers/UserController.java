@@ -28,9 +28,6 @@ public class UserController {
         password.setText("Contraseña: "+"*".repeat(user.getPassword().length()));
     }
 
-    public void onEditClick(ActionEvent actionEvent) {
-
-    }
 
 
 }

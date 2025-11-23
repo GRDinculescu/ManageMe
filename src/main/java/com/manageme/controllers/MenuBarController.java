@@ -37,18 +37,22 @@ public class MenuBarController {
     void initData(User user){
         this.user = user;
 
-        menuDropdown = new ContextMenu(
-                new MenuItem("Inicio"),
-                new MenuItem("Usuarios"),
-                new MenuItem("Ayuda")
-        );
+        List<MenuItem> items = new ArrayList<>();
+
+        items.add(new MenuItem("Inicio"));
+        items.add(new MenuItem("Ayuda"));
+        items.add(new MenuItem("Usuarios"));
+
+        menuDropdown = new ContextMenu();
+        menuDropdown.getItems().addAll(items);
+
         userDropdown = new ContextMenu(
                 new MenuItem("Perfil"),
                 new MenuItem("Cerrar sesión")
         );
         menuDropdown.getItems().get(0).setOnAction(e -> onLogoClicked());
-        menuDropdown.getItems().get(1).setOnAction(e -> onUsersClicked());
-        menuDropdown.getItems().get(2).setOnAction(e -> onHelpClicked());
+        menuDropdown.getItems().get(1).setOnAction(e -> onHelpClicked());
+        menuDropdown.getItems().get(2).setOnAction(e -> onUsersClicked());
         userDropdown.getItems().get(1).setOnAction(e -> onLogout());
     }
 

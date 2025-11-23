@@ -35,5 +35,4 @@
             <Label fx:id="password" text="Contraseña: ****************"/>
         </HBox>
     </VBox>
-    <Button text="EDITAR" onAction="#onEditClick" styleClass="h-125, w-125, round-2, bold, ts-2"/>
 </HBox>
