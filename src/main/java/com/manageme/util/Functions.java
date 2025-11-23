@@ -21,7 +21,7 @@ public class Functions {
         return instance;
     }
 
-    public void showAlert(String title, String msg, Alert.AlertType alertType){
+    public static void showAlert(String title, String msg, Alert.AlertType alertType){
         System.err.println(msg);
         Alert alert = new Alert(alertType);
         alert.setContentText(msg);

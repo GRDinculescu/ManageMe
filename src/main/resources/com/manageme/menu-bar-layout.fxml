@@ -29,17 +29,17 @@
             </ImageView>
 
             <!-- ayuda -->
-            <ImageView fitWidth="60.0" onMouseClicked="#onHelpClicked" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitWidth="60.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#onHelpClicked">
                 <Image url="@../../drawable/help.png" />
             </ImageView>
 
             <!-- menu -->
-            <ImageView fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitWidth="80.0" pickOnBounds="true" preserveRatio="true" fx:id="menuIcon" onMouseClicked="#onMenuClicked">
                 <Image url="@../../drawable/menu.png" />
             </ImageView>
 
             <!-- usuario -->
-            <ImageView fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitWidth="80.0" pickOnBounds="true" preserveRatio="true" fx:id="userIcon" onMouseClicked="#onUserClicked">
                 <Image url="@../../drawable/face.png" />
             </ImageView>
         </HBox>
