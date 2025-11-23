@@ -15,11 +15,11 @@ Un Proyecto de clase de Interfaces para hacer una aplicacion de gestion de inven
 - ~~Login~~
 - Hacer layout principal
   - Hacer la campanita
-  - Link a ayuda
-  - Hacer el menu desplegable
+  - ~~Link a ayuda~~
+  - ~~Hacer el menu desplegable~~
   - Hacer la campanita
-  - Tarjeta de usuario
-  - Logo
+  - Tarjeta de usuario ?
+  - ~~Logo~~
 - Hacer el menu principal
   - Hacer los filtros
   - Hacer el listado de productos
@@ -31,17 +31,17 @@ Un Proyecto de clase de Interfaces para hacer una aplicacion de gestion de inven
   - Mensaje de error
   - Notificacion (tras ejecutar algo con exito)
 - Ayuda
-  - Listado de FAQ
-  - Detalles de pregunta
+  - ~~Listado de FAQ~~
+  - ~~Detalles de pregunta~~
   - Envio de pregunta
 - Usuarios
-  - Listado de Usuarios
+  - ~~Listado de Usuarios~~
   - Edicion de usuarios
 
 
 #### SubTareas
 
-- Pasar datos de login a un json
+- Pasar datos de login a un json ??
 
 #### Permisos
 - Usuario
