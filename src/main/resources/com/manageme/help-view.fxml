@@ -19,43 +19,8 @@
         <padding>
             <Insets bottom="50" left="50" right="50" top="50" />
         </padding>
-        <VBox alignment="CENTER_LEFT" spacing="25">
-            <HBox fx:id="custom" onMouseClicked="#handleEvent" styleClass="question">
-                <padding>
-                    <Insets bottom="10" left="50" right="10" top="10" />
-                </padding>
-                <Label text="Tengo una pregunta" />
-                <ImageView> <Image url="@../../drawable/keyboard_arrow_right.png" /> </ImageView>
-            </HBox>
-            <HBox fx:id="q1" onMouseClicked="#handleEvent" styleClass="question">
-                <padding>
-                    <Insets bottom="10" left="50" right="10" top="10" />
-                </padding>
-                <Label text="Tengo una pregunta" />
-                <ImageView> <Image url="@../../drawable/keyboard_arrow_right.png" /> </ImageView>
-            </HBox>
-            <HBox fx:id="q2" onMouseClicked="#handleEvent" styleClass="question">
-                <padding>
-                    <Insets bottom="10" left="50" right="10" top="10" />
-                </padding>
-                <Label text="Tengo una pregunta" />
-                <ImageView> <Image url="@../../drawable/keyboard_arrow_right.png" /> </ImageView>
-            </HBox>
-            <HBox fx:id="q3" onMouseClicked="#handleEvent" styleClass="question">
-                <padding>
-                    <Insets bottom="10" left="50" right="10" top="10" />
-                </padding>
-                <Label text="Tengo una pregunta" />
-                <ImageView> <Image url="@../../drawable/keyboard_arrow_right.png" /> </ImageView>
-            </HBox>
-            <HBox fx:id="q4" onMouseClicked="#handleEvent" styleClass="question">
-                <padding>
-                    <Insets bottom="10" left="50" right="10" top="10" />
-                </padding>
-                <Label text="Tengo una pregunta" />
-                <ImageView> <Image url="@../../drawable/keyboard_arrow_right.png" /> </ImageView>
-            </HBox>
-            <HBox fx:id="q5" onMouseClicked="#handleEvent" styleClass="question">
+        <VBox alignment="CENTER_LEFT" spacing="25" fx:id="questions">
+            <HBox fx:id="custom" onMouseClicked="#form" styleClass="question">
                 <padding>
                     <Insets bottom="10" left="50" right="10" top="10" />
                 </padding>
@@ -63,37 +28,29 @@
                 <ImageView> <Image url="@../../drawable/keyboard_arrow_right.png" /> </ImageView>
             </HBox>
         </VBox>
-        <VBox fx:id="form" alignment="CENTER" managed="false" spacing="10" visible="false" HBox.hgrow="ALWAYS">
-            <HBox spacing="50">
-                <ImageView fitHeight="200" fitWidth="200">
-                    <Image url="@../../drawable/face.png" />
-                </ImageView>
-                <VBox>
-                    <Label fx:id="username" style="-fx-font-size: 40px;" text="Usuario conectado" />
-                    <Label fx:id="supportEmail" style="-fx-font-size: 32px;" text="Email de soporte: suporte@manageme.es" />
-                    <Label fx:id="supportPhone" style="-fx-font-size: 32px;" text="Telefono de sporte: +34 967 253 621" />
-                </VBox>
-            </HBox>
-            <TextArea VBox.vgrow="ALWAYS" />
-            <HBox>
-                <Region HBox.hgrow="ALWAYS" />
-                <Button prefHeight="50" prefWidth="150" style="-fx-font-size: 32px;" text="Enviar" />
-            </HBox>
-        </VBox>
-        <VBox fx:id="m1" alignment="TOP_CENTER" managed="true" visible="true" HBox.hgrow="ALWAYS">
-            <Label styleClass="answer" text="PREGUNTA 1" />
-        </VBox>
-        <VBox fx:id="m2" alignment="TOP_CENTER" managed="false" visible="false" HBox.hgrow="ALWAYS">
-            <Label styleClass="answer" text="PREGUNTA 2" />
-        </VBox>
-        <VBox fx:id="m3" alignment="TOP_CENTER" managed="false" visible="false" HBox.hgrow="ALWAYS">
-            <Label styleClass="answer" text="PREGUNTA 3" />
-        </VBox>
-        <VBox fx:id="m4" alignment="TOP_CENTER" managed="false" visible="false" HBox.hgrow="ALWAYS">
-            <Label styleClass="answer" text="PREGUNTA 4" />
-        </VBox>
-        <VBox fx:id="m5" alignment="TOP_CENTER" managed="false" visible="false" HBox.hgrow="ALWAYS">
-            <Label styleClass="answer" text="PREGUNTA 5" />
+        <VBox HBox.hgrow="ALWAYS" prefWidth="800">
+
+            <VBox fx:id="form" alignment="CENTER" spacing="10" HBox.hgrow="ALWAYS">
+                <HBox spacing="50">
+                    <ImageView fitHeight="200" fitWidth="200">
+                        <Image url="@../../drawable/face.png" />
+                    </ImageView>
+                    <VBox>
+                        <Label fx:id="username" style="-fx-font-size: 40px;" text="Usuario conectado" prefWidth="700" wrapText="true"/>
+                        <Label fx:id="supportEmail" style="-fx-font-size: 32px;" text="Email de soporte: suporte@manageme.es" prefWidth="700" wrapText="true"/>
+                        <Label fx:id="supportPhone" style="-fx-font-size: 32px;" text="Telefono de sporte: +34 967 253 621" prefWidth="700" wrapText="true"/>
+                    </VBox>
+                </HBox>
+                <TextArea VBox.vgrow="ALWAYS" />
+                <HBox>
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Button prefHeight="50" prefWidth="150" style="-fx-font-size: 32px;" text="Enviar" />
+                </HBox>
+            </VBox>
+            <VBox fx:id="answer" alignment="TOP_CENTER" HBox.hgrow="ALWAYS">
+
+            </VBox>
+
         </VBox>
     </HBox>
 </VBox>

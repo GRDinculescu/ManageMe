@@ -54,7 +54,7 @@ public class MenuBarController {
         try {
             rootT = fxmlLoader.load();
         } catch (IOException e) {
-            Functions.showAlert("Nav error", "No se encontró la pagina solicitada", Alert.AlertType.ERROR);
+            Functions.showAlert("Nav error", "Fallo cargando esa pagina", Alert.AlertType.ERROR);
             return;
         }
         Scene mainScene = new Scene(rootT);
@@ -80,7 +80,7 @@ public class MenuBarController {
         try {
             rootT = fxmlLoader.load();
         } catch (IOException e) {
-            Functions.showAlert("Nav error", "No se encontró la pagina solicitada", Alert.AlertType.ERROR);
+            Functions.showAlert("Nav error", "Fallo cargando esa pagina", Alert.AlertType.ERROR);
             return;
         }
         Scene mainScene = new Scene(rootT);
@@ -106,7 +106,7 @@ public class MenuBarController {
         try {
             rootT = fxmlLoader.load();
         } catch (IOException e) {
-            Functions.showAlert("Nav error", "No se encontró la pagina solicitada", Alert.AlertType.ERROR);
+            Functions.showAlert("Nav error", "Fallo cargando esa pagina", Alert.AlertType.ERROR);
             return;
         }
 

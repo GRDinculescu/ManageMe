@@ -81,16 +81,16 @@ public class LoginController {
                     .orElse(null);
 
             if (user == null) { // Verificamos si existe
-                functions.showAlert("Login error", "No se encontró el usuario", Alert.AlertType.ERROR);
+                Functions.showAlert("Login error", "No se encontró el usuario", Alert.AlertType.ERROR);
                 return;
             }
 
             if (!user.getPassword().equals(password)) { // Verificamos si la contraseña coincide
-                functions.showAlert("Login error", "La contraseña no coincide", Alert.AlertType.ERROR);
+                Functions.showAlert("Login error", "La contraseña no coincide", Alert.AlertType.ERROR);
                 return;
             }
         } catch (FileNotFoundException e) { // Si no se encuentra el archivo de usuarios
-            functions.showAlert("File error", "No se encontró el archivo de usuario", Alert.AlertType.ERROR);
+            Functions.showAlert("File error", "No se encontró el archivo de usuario", Alert.AlertType.ERROR);
             return;
         }
 
