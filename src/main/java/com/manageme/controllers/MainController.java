@@ -6,24 +6,17 @@ import com.manageme.InventarioApp;
 import com.manageme.models.Product;
 import com.manageme.models.User;
 import com.manageme.util.Functions;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.FileReader;
-import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.List;
-import java.util.Objects;
 
 public class MainController {
     private final Functions functions = Functions.getFunctions();
@@ -47,7 +40,7 @@ public class MainController {
     }
 
     private void showProducts(){
-        File documents = functions.getDocuments();
+        File documents = functions.getDocumentsFolder();
 
         Gson gson = new Gson();
         try (FileReader fr = new FileReader(new File(documents, "products.json"))) {
@@ -78,33 +71,25 @@ public class MainController {
     }
 
     @FXML
-    public void onAddClick(ActionEvent actionEvent) throws IOException {
-        // Aqui se carga el layout para agregar productos
-        FXMLLoader loader = new FXMLLoader(InventarioApp.class.getResource("add-product-layout.fxml"));
-        Parent root = loader.load();
-        AddProductAdminController controller = loader.getController();
-        Stage modalStage = new Stage();
+    public void onAddClick(ActionEvent actionEvent) {
+        try {
+            ProductAdminController controller = Functions.showAddProductMenu(ProductMenuType.ADD, "Agregar producto");
 
-        controller.setDeleteButtonVisible(false); // Se desabilita el boton borrar
+            // Obtenemos el producto
+            Product product = controller.getProduct();
 
-        modalStage.initModality(Modality.APPLICATION_MODAL); // Que sea modal
-        modalStage.setTitle("Agregar producto"); // Titulo
-        Scene scene = new Scene(root); // Creamos una escena
-        // Le agregamos los estilos
-        scene.getStylesheets().add(Objects.requireNonNull(InventarioApp.class.getResource("styles/styles.css")).toExternalForm());
-        modalStage.setScene(scene);
-        modalStage.showAndWait();
+            if (product != null) {   // La parte para agregar el producto al scrollView
+                FXMLLoader productLoader = new FXMLLoader(InventarioApp.class.getResource("product-layout.fxml"));
+                Parent productLayout = productLoader.load();
+                ProductController productController = productLoader.getController();
 
-        // Obtenemos el producto
-        Product product = controller.getProduct();
-
-        {   // La parte para agregar el producto al scrollView
-            FXMLLoader productLoader = new FXMLLoader(InventarioApp.class.getResource("product-layout.fxml"));
-            Parent productLayout = productLoader.load();
-            ProductController productController = productLoader.getController();
-
-            productController.setData(product);
-            productsView.getChildren().addFirst(productLayout);
+                productController.setData(product);
+                productsView.getChildren().addFirst(productLayout);
+            }
+        } catch (Exception e) {
+            System.out.println("\n");
+            e.printStackTrace();
+            Functions.showAlert("Error de ventana", "No se pudo cargar la ventana para agregar productos.", Alert.AlertType.ERROR);
         }
     }
 }

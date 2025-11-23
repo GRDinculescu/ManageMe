@@ -4,8 +4,16 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.manageme.models.Notification;
 import com.manageme.models.Product;
+import com.manageme.InventarioApp;
+import com.manageme.controllers.ProductAdminController;
+import com.manageme.controllers.ProductMenuType;
 import com.manageme.models.User;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.FileReader;
@@ -17,9 +25,26 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Objects;
 
 public class Functions {
-    private File documents;
+    private static File documentsFolder;
+    private static File usersFile;
+    private static File productsFile;
+    private static File notificationsFile;
+
+    public static File getUsersFile() {
+        return usersFile;
+    }
+
+    public static File getProductsFile() {
+        return productsFile;
+    }
+
+    public static File getNotificationsFile() {
+        return notificationsFile;
+    }
+
     private static Functions instance;
     private Functions() {}
 
@@ -28,18 +53,49 @@ public class Functions {
         return instance;
     }
 
-    public static void showAlert(String title, String msg, Alert.AlertType alertType){
+    public static <T> List<T> readJson(Class<T> clazz, File file){
+        Gson gson = new Gson();
+        Type type = TypeToken.getParameterized(List.class, clazz).getType();
+        try (FileReader fr = new FileReader(file)) {
+            return gson.fromJson(fr, type);
+        } catch (IOException e) {
+            Functions.showAlert("Error de archivo", "No se pudo cargar el archivo.", Alert.AlertType.ERROR);
+            return null;
+        }
+    }
+
+    public static <T> void writeJson(List<T> list, File file){
+        Gson gson = new Gson();
+        try (FileWriter fw = new FileWriter(file)) {
+            gson.toJson(list, fw);
+        } catch (IOException e) {
+            Functions.showAlert("Error de archivo", "No se pudo guardar el archivo.", Alert.AlertType.ERROR);
+        }
+    }
+
+    public static Alert showAlert(String title, String msg, Alert.AlertType alertType){
         System.err.println(msg);
         Alert alert = new Alert(alertType);
         alert.setContentText(msg);
         alert.setHeaderText(title);
-        alert.show();
+        alert.showAndWait();
+        return alert;
     }
 
-    public File generateFiles() throws IOException {
+    public void generateFiles() throws IOException {
         // Genera nuestra carpeta en documentos
-        if (documents == null) documents = new File(System.getProperty("user.home"), "Documents/ManageMe");
-        if(documents.mkdir()) System.out.printf("Carpeta generada en %s%n", documents.getAbsolutePath());
+        if (documentsFolder == null) documentsFolder = new File(System.getProperty("user.home"), "Documents/ManageMe");
+        if(documentsFolder.mkdir()) System.out.printf("Carpeta generada en %s%n", documentsFolder.getAbsolutePath());
+
+        // Genera el archivo de productos
+        productsFile = new File(documentsFolder,"products.json");
+        if (productsFile.createNewFile())
+            System.out.println("Generated users file");
+
+        // Genera el archivo de notificaciones
+        notificationsFile = new File(documentsFolder,"notifications.json");
+        if (notificationsFile.createNewFile())
+            System.out.println("Generated notifications file");
 
         // Genera el archivo de usuarios
         File usersFile = new File(documents,"users.json");
@@ -71,55 +127,46 @@ public class Functions {
                 gson.toJson(users, fw);
             }
         }
-        return usersFile;
     }
 
-    public <T> List<T> loadJSON(String fileT, Class<T> clazz) {
-        File file = new File(documents, fileT);
-        List<T> data = null;
 
-        try (FileReader fr = new FileReader(file)) {
-            Gson gson = new Gson();
-            Type type = TypeToken.getParameterized(List.class, clazz).getType();
-            data = gson.fromJson(fr, type);
-        } catch (IOException e) {
-            Functions.showAlert("Error de archivo", "No se pudo cargar los datos.", Alert.AlertType.ERROR);
-        }
-
-        return (data != null) ? data : new ArrayList<>();
+    public static ProductAdminController showAddProductMenu(ProductMenuType type, String title) throws IOException {
+        return showAddProductMenu(type, title, null);
     }
 
-    public <T> boolean saveJSON(String fileT, List<T> data) {
-        File file = new File(documents, fileT);
-        try {
-            if (file.createNewFile())
-                System.out.println("Generated file");
+    public static ProductAdminController showAddProductMenu(ProductMenuType type, String title, Product product) throws IOException {
+        // Aqui se carga el layout para agregar productos
+        FXMLLoader loader = new FXMLLoader(InventarioApp.class.getResource("product-admin-control-layout.fxml"));
+        Parent root = loader.load();
+        ProductAdminController controller = loader.getController();
+        Stage modalStage = new Stage();
 
-            try (FileWriter fw = new FileWriter(file)) {
-                Gson gson = new Gson();
-                gson.toJson(data, fw);
-                return true;
-            } catch (IOException e) {
-                Functions.showAlert("Error de archivo", "No se pudo guardar los datos.", Alert.AlertType.ERROR);
-            }
-        } catch (IOException e) {
-            Functions.showAlert("Error de archivo", "No se pudo generar el archivo.", Alert.AlertType.ERROR);
-        }
+        controller.setEditMode(type);
+        if (product != null) controller.setInfo(product);
 
-        return false;
+        modalStage.initModality(Modality.APPLICATION_MODAL); // Que sea modal
+        modalStage.setTitle(title); // Titulo
+        Scene scene = new Scene(root); // Creamos una escena
+        // Le agregamos los estilos
+        scene.getStylesheets().add(Objects.requireNonNull(InventarioApp.class.getResource("styles/styles.css")).toExternalForm());
+        modalStage.setScene(scene);
+        modalStage.showAndWait();
+
+        return controller;
     }
 
     public void sendNotification(String notification, String userName) {
-        List<Notification> notifications = loadJSON("notifications.json", Notification.class);
+        List<Notification> notifications = readJson(Notification.class, notificationsFile);
+        if (notifications == null) return;
         notifications.add(new Notification(LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm")), userName, notification));
-        saveJSON("notifications.json", notifications);
+        writeJson(notifications, notificationsFile);
     }
 
-    public File getDocuments() {
-        return documents;
+    public File getDocumentsFolder() {
+        return documentsFolder;
     }
 
-    public void setDocuments(File documents) {
-        this.documents = documents;
+    public void setDocumentsFolder(File documentsFolder) {
+        Functions.documentsFolder = documentsFolder;
     }
 }
