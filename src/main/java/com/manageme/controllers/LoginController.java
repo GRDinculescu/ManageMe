@@ -68,7 +68,7 @@ public class LoginController {
         String username = tfdUser.getText();
         String password = tfdPasswd.getText();
 
-        List<User> users = Functions.readJson(User.class, usersFile);
+        List<User> users = Functions.readJson(User.class, Functions.getUsersFile());
         if (users == null) return;
 
         // Obtengo el usuario que coincida, si no hay, es null

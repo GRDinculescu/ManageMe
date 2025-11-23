@@ -40,7 +40,7 @@ public class UsersController {
 
 
     private void showUsers(){
-        List<User> users = functions.loadJSON("users.json", User.class);
+        List<User> users = Functions.readJson(User.class, Functions.getUsersFile());
 
         try {
             for (User u : users){

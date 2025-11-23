@@ -98,7 +98,7 @@ public class Functions {
             System.out.println("Generated notifications file");
 
         // Genera el archivo de usuarios
-        File usersFile = new File(documents,"users.json");
+        usersFile = new File(documentsFolder,"users.json");
         if (usersFile.createNewFile()) {
             System.out.println("Generated users file");
 
