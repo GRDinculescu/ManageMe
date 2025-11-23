@@ -18,84 +18,76 @@
     <fx:include source="menu-bar-layout.fxml" fx:id="menubar"/>
 
     <!-- aplicacion -->
-    <StackPane>
-        <VBox spacing="30.0" VBox.vgrow="ALWAYS">
-            <padding>
-                <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
-            </padding>
+    <VBox spacing="30.0" VBox.vgrow="ALWAYS">
+        <padding>
+            <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+        </padding>
 
-            <!-- parte de filtros y busqueda -->
-            <HBox>
-                <!-- boton filtros -->
-                <Button onAction="#onFilterClick" prefHeight="50.0" prefWidth="200.0" styleClass="ts-3, round-1, bc-lblue" text="FILTRAR" textAlignment="CENTER" />
-                <Region HBox.hgrow="ALWAYS" />
+        <!-- parte de filtros y busqueda -->
+        <HBox>
+            <!-- boton filtros -->
+            <Button onAction="#onFilterClick" prefHeight="50.0" prefWidth="200.0" styleClass="ts-3, round-1, bc-lblue" text="FILTRAR" textAlignment="CENTER" />
+            <Region HBox.hgrow="ALWAYS" />
 
-                <!-- parte de busqueda -->
-                <HBox alignment="CENTER" spacing="20.0">
+            <!-- parte de busqueda -->
+            <HBox alignment="CENTER" spacing="20.0">
 
-                    <!-- imagen lupa -->
-                    <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                        <Image url="@../../drawable/search.png" />
-                    </ImageView>
+                <!-- imagen lupa -->
+                <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@../../drawable/search.png" />
+                </ImageView>
 
-                    <!-- buscador -->
-                    <TextField prefWidth="400" VBox.vgrow="ALWAYS">
-                        <font>
-                            <Font size="20" />
-                        </font>
-                    </TextField>
+                <!-- buscador -->
+                <TextField prefWidth="400" VBox.vgrow="ALWAYS">
+                    <font>
+                        <Font size="20" />
+                    </font>
+                </TextField>
+            </HBox>
+            <Region HBox.hgrow="ALWAYS" />
+
+            <!-- boton de agregar -->
+            <Button prefHeight="50.0" prefWidth="50.0" styleClass="ts-3, round-1, bc-lgreen, bold" text="+" onAction="#onAddClick"/>
+        </HBox>
+
+        <!-- parte principal -->
+        <HBox spacing="30.0" VBox.vgrow="ALWAYS">
+
+            <!-- botones de categoria -->
+            <VBox fx:id="categories" alignment="CENTER" spacing="20" managed="false" visible="false">
+                <HBox spacing="20">
+                    <Button styleClass="h-150, w-150, ts-3, bold, round-3, bc-dred" text="Carne" />
+                    <Button styleClass="h-150, w-150, ts-3, bold, round-3, bc-green" text="Verdura" />
+                    <Button styleClass="h-150, w-150, ts-3, bold, round-3, bc-lgreen" text="Fruta" />
                 </HBox>
-                <Region HBox.hgrow="ALWAYS" />
+                <HBox spacing="20">
+                    <Button styleClass="h-150, w-150, ts-3, bold, round-3, bc-lred" text="Bebidas" />
+                    <Button styleClass="h-150, w-150, ts-3, bold, round-3, bc-lgray" text="Utensilios" />
+                    <Button styleClass="h-150, w-150, ts-3, bold, round-3, bc-dgray" text="Pescaderia" />
+                </HBox>
+                <HBox spacing="20">
+                    <Button styleClass="h-150, w-150, ts-3, bold, round-3, bc-lbrown" text="Panaderia" />
+                    <Button styleClass="h-150, w-150, ts-3, bold, round-3, bc-green" text="Categoria 8" />
+                    <Button styleClass="h-150, w-150, ts-3, bold, round-3, bc-lblue" text="Categoria 9" />
+                </HBox>
+                <HBox spacing="20">
+                    <Button styleClass="h-150, w-150, ts-3, bold, round-3, bc-dgreen" text="Categoria 10" />
+                    <Button styleClass="h-150, w-150, ts-3, bold, round-3, bc-dorange" text="Categoria 11" />
+                    <Button styleClass="h-150, w-150, ts-3, bold, round-3, bc-dcyan" text="Categoria 12" />
+                </HBox>
+            </VBox>
 
-                <!-- boton de agregar -->
-                <Button prefHeight="50.0" prefWidth="50.0" styleClass="ts-3, round-1, bc-lgreen, bold" text="+" onAction="#onAddClick"/>
-            </HBox>
+            <!-- filtros -->
+            <fx:include fx:id="filtres" source="filtres-layout.fxml" />
 
-            <!-- parte principal -->
-            <HBox spacing="30.0" VBox.vgrow="ALWAYS">
-
-                <!-- botones de categoria -->
-                <VBox fx:id="categories" alignment="CENTER" spacing="20" managed="false" visible="false">
-                    <HBox spacing="20">
-                        <Button styleClass="h-150, w-150, ts-3, bold, round-3, bc-dred" text="Carne" />
-                        <Button styleClass="h-150, w-150, ts-3, bold, round-3, bc-green" text="Verdura" />
-                        <Button styleClass="h-150, w-150, ts-3, bold, round-3, bc-lgreen" text="Fruta" />
-                    </HBox>
-                    <HBox spacing="20">
-                        <Button styleClass="h-150, w-150, ts-3, bold, round-3, bc-lred" text="Bebidas" />
-                        <Button styleClass="h-150, w-150, ts-3, bold, round-3, bc-lgray" text="Utensilios" />
-                        <Button styleClass="h-150, w-150, ts-3, bold, round-3, bc-dgray" text="Pescaderia" />
-                    </HBox>
-                    <HBox spacing="20">
-                        <Button styleClass="h-150, w-150, ts-3, bold, round-3, bc-lbrown" text="Panaderia" />
-                        <Button styleClass="h-150, w-150, ts-3, bold, round-3, bc-green" text="Categoria 8" />
-                        <Button styleClass="h-150, w-150, ts-3, bold, round-3, bc-lblue" text="Categoria 9" />
-                    </HBox>
-                    <HBox spacing="20">
-                        <Button styleClass="h-150, w-150, ts-3, bold, round-3, bc-dgreen" text="Categoria 10" />
-                        <Button styleClass="h-150, w-150, ts-3, bold, round-3, bc-dorange" text="Categoria 11" />
-                        <Button styleClass="h-150, w-150, ts-3, bold, round-3, bc-dcyan" text="Categoria 12" />
-                    </HBox>
+            <!-- los productos -->
+            <ScrollPane fitToWidth="true" HBox.hgrow="ALWAYS">
+                <VBox fx:id="productsView" spacing="20">
+                    <padding>
+                        <Insets bottom="20" left="20" right="20" top="20" />
+                    </padding>
                 </VBox>
-
-                <!-- filtros -->
-                <fx:include fx:id="filtres" source="filtres-layout.fxml" />
-
-                <!-- los productos -->
-                <ScrollPane fitToWidth="true" HBox.hgrow="ALWAYS">
-                    <VBox spacing="20">
-                        <padding>
-                            <Insets bottom="20" left="20" right="20" top="20" />
-                        </padding>
-                        <fx:include source="product-layout.fxml" />
-                        <fx:include source="product-layout.fxml" />
-                        <fx:include source="product-layout.fxml" />
-                        <fx:include source="product-layout.fxml" />
-                        <fx:include source="product-layout.fxml" />
-                    </VBox>
-                </ScrollPane>
-            </HBox>
-        </VBox>
-        <fx:include fx:id="addMenuAdmin" source="add-product-layout.fxml"/>
-    </StackPane>
+            </ScrollPane>
+        </HBox>
+    </VBox>
 </VBox>

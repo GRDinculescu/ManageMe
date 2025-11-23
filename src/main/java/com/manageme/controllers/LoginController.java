@@ -61,7 +61,6 @@ public class LoginController {
         loginPane.setManaged(true);
     }
 
-
     @FXML
     protected void onLogin() throws IOException {
         Gson gson = new Gson();
