@@ -60,7 +60,7 @@ public class Functions {
             return gson.fromJson(fr, type);
         } catch (IOException e) {
             Functions.showAlert("Error de archivo", "No se pudo cargar el archivo.", Alert.AlertType.ERROR);
-            return new ArrayList<>();
+            return null;
         }
     }
 
@@ -98,7 +98,7 @@ public class Functions {
             System.out.println("Generated notifications file");
 
         // Genera el archivo de usuarios
-        usersFile = new File(documentsFolder,"users.json");
+        File usersFile = new File(documentsFolder,"users.json");
         if (usersFile.createNewFile()) {
             System.out.println("Generated users file");
 
