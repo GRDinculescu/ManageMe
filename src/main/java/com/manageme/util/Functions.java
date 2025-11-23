@@ -126,7 +126,7 @@ public class Functions {
         }
 
         // Genera el archivo de usuarios
-        File usersFile = new File(documentsFolder,"users.json");
+        usersFile = new File(documentsFolder,"users.json");
         if (usersFile.createNewFile()) {
             System.out.println("Generated users file");
 
@@ -144,9 +144,33 @@ public class Functions {
                             "admin lastname",
                             123456789,
                             c.getTime(),
-                            "admin@admin.com",
+                            "admin@manageme.com",
                             "C/admin",
                             "admin",
+                            "1"
+                    )
+            );
+            users.add(
+                    new User(
+                            "manager",
+                            "manager lastname",
+                            987654321,
+                            c.getTime(),
+                            "manager@manageme.com",
+                            "C/manager",
+                            "manager",
+                            "1"
+                    )
+            );
+            users.add(
+                    new User(
+                            "user",
+                            "user lastname",
+                            987123654,
+                            c.getTime(),
+                            "user@manageme.com",
+                            "C/user",
+                            "user",
                             "1"
                     )
             );

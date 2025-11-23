@@ -118,7 +118,6 @@ public class MenuBarController {
         Functions functions = Functions.getFunctions();
 
         LoginController lc = fxmlLoader.getController();
-        lc.initData();
 
         // TODO: Hacer que no este maximizado.
         //  Quitar el setMaximized no funciona :(

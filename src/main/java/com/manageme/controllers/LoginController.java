@@ -39,12 +39,6 @@ public class LoginController {
 
     private final Functions functions = Functions.getFunctions();
 
-    private File usersFile;
-
-    public void initData(){
-        this.usersFile = Functions.getUsersFile();
-    }
-
     @FXML
     protected void onForgetPassword() throws IOException { // TODO: Habria que hacer que esto haga algo no? Quiza una notificacion al admin?
         loginPane.setVisible(false);

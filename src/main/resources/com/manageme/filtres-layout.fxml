@@ -8,8 +8,8 @@
 
 <?import javafx.geometry.Insets?>
 <?import org.controlsfx.control.RangeSlider?>
-<VBox xmlns="http://javafx.com/javafx"
-      spacing="25" styleClass="ts-2, bc-lgray, round-3" >
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1"
+      spacing="25" styleClass="ts-2, bc-lgray, round-3">
     <padding>
         <Insets left="25" right="25" top="25" bottom="25"/>
     </padding>
@@ -80,6 +80,6 @@
     <HBox>
         <CheckBox text="Comprable" />
         <Region HBox.hgrow="ALWAYS"/>
-        <Button text="Buscar" styleClass="ts-2"/>
+        <Button fx:id="search" text="Buscar" styleClass="ts-2"/>
     </HBox>
 </VBox>
