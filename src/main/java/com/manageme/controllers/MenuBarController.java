@@ -18,6 +18,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -113,7 +114,7 @@ public class MenuBarController {
     @FXML
     public void onLogout() {
         FXMLLoader fxmlLoader = new FXMLLoader(InventarioApp.class.getResource("login-view.fxml"));
-        Parent rootT = null;
+        Parent rootT;
         try {
             rootT = fxmlLoader.load();
         } catch (IOException e) {
@@ -121,17 +122,19 @@ public class MenuBarController {
             return;
         }
 
-        Functions functions = Functions.getFunctions();
+        Functions.getFunctions();
+        fxmlLoader.getController();
 
-        LoginController lc = fxmlLoader.getController();
-
-        // TODO: Hacer que no este maximizado.
-        //  Quitar el setMaximized no funciona :(
         Scene scene = new Scene(rootT);
         Stage stage = (Stage) root.getScene().getWindow();
         stage.setTitle("Inicia sesión!");
+        stage.setMaximized(false);
         stage.setScene(scene);
-        stage.setMaximized(true);
+
+        Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
+        stage.setX(size.getWidth()/2-scene.getWidth()/2);
+        stage.setY(size.getHeight()/2-scene.getHeight()/2);
+
         stage.show();
     }
 

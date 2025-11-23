@@ -7,6 +7,7 @@ module com.manageme {
     requires org.kordamp.bootstrapfx.core;
     requires javafx.graphics;
     requires com.google.gson;
+    requires java.desktop;
 
     opens com.manageme to javafx.fxml;
     opens com.manageme.controllers to javafx.fxml;

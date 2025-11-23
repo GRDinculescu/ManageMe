@@ -44,17 +44,25 @@ public class HelpController {
     void initData(User user){
         mamap = Map.of(
                 "admin", Map.of(
-                        "Soy admin?", "Porfavor, deja este trabajo",
-                        "Ayuda", "Nel",
-                        "Que tal el dia?", "Tan solo que estas hablando con la app de gestion?",
-                        "Por que no va nada? D:", "Se positivo, si has llegado hasta aqui significa que algo si que funciona",
-                        "Que nota se merecen los que han echo esto?", "9/11" // TODO: No quiero que se me olvide que esto esta aqui
-                        ),
+                        "Soy admin?", "Sí, tienes permisos de administrador",
+                        "Ayuda", "Puedes consultar la documentación de administración o contactar soporte",
+                        "Que tal el dia?", "Todo funciona según lo esperado en el panel de administración",
+                        "Por que no va nada? D:", "Verifica los logs y la configuración, algunos procesos pueden estar pendientes, o se incluirán en futuros parches",
+                        "Que puedo hacer como admin", "Ver, borrar, editar; tanto productos como usuarios."
+                ),
                 "user", Map.of(
-                        "Pregunta", "Respuesta"
+                        "Como veo mis productos?", "Accede a la sección 'Mis Productos' desde el menú principal",
+                        "Puedo editar mi perfil?", "Sí, en la opción 'Editar Perfil' puedes actualizar tu información",
+                        "Como hago un pedido?", "Selecciona los productos deseados y pulsa 'Realizar Pedido'",
+                        "Que hago si olvido mi contraseña?", "Usa la opción 'Recuperar Contraseña' para restablecerla de forma segura",
+                        "Puedo cancelar un pedido?", "Solo si el pedido no ha sido procesado aún; verifica su estado antes"
                 ),
                 "manager", Map.of(
-                        "Pregunta", "Respuesta"
+                        "Como veo el estado de pedidos?", "En la sección 'Gestión de Pedidos' puedes filtrar por estado",
+                        "Puedo asignar tareas a un empleado?", "Sí, selecciona el pedido y pulsa 'Asignar a Empleado'",
+                        "Como genero un informe de ventas?", "Ve a 'Informes' y selecciona 'Ventas por período'",
+                        "Que hago si un producto no está en stock?", "Marca el producto como 'Agotado' y notifica al responsable",
+                        "Puedo cambiar el precio de un producto?", "Desde 'Gestión de Productos' puedes actualizar el precio de forma segura"
                 )
         );
 

@@ -6,7 +6,6 @@ public class Notification {
     String user;
     String time;
 
-
     public Notification(String time, String user, String message) {
         this.time = time;
         this.user = user;

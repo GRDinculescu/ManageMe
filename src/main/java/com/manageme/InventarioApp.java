@@ -19,7 +19,6 @@ public class InventarioApp extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(InventarioApp.class.getResource("login-view.fxml"));
         Parent root = fxmlLoader.load();
 
-        LoginController lc = fxmlLoader.getController();
         functions.generateFiles();
 
         Scene scene = new Scene(root);
