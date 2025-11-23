@@ -8,8 +8,8 @@
 <?import javafx.scene.image.Image?>
 
 <VBox   fx:id="root"
-        xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.manageme.controllers.AddProductAdmin"
-        maxHeight="-Infinity" maxWidth="-Infinity" spacing="50" styleClass="bc-dark, round-4" visible="false" managed="false">
+        xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.manageme.controllers.AddProductAdminController"
+        maxHeight="-Infinity" maxWidth="-Infinity" spacing="50" styleClass="bc-dark">
         <padding>
             <Insets bottom="25" top="25" left="30" right="30"/>
         </padding>
@@ -62,7 +62,7 @@
                 <ComboBox fx:id="brand" styleClass="ts-2, mxw-200" />
             </VBox>
             <Region HBox.hgrow="ALWAYS" />
-            <Button styleClass="ts-2, bold, bc-red, round-1" text="BORRAR" onAction="#onDeleteClick"/>
+            <Button fx:id="deleteButton" styleClass="ts-2, bold, bc-red, round-1" text="BORRAR" onAction="#onDeleteClick"/>
             <Button styleClass="ts-2, bold, bc-cyan, round-1" text="CONFIRMAR" onAction="#onSaveClick"/>
         </HBox>
 </VBox>

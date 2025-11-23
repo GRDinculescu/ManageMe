@@ -10,6 +10,20 @@ public class Product {
     String subcategory;
     String brand;
 
+    @Override
+    public String toString() {
+        return "Product{" +
+                "name='" + name + '\'' +
+                ", price=" + price +
+                ", quantity=" + quantity +
+                ", description='" + description + '\'' +
+                ", supplier='" + supplier + '\'' +
+                ", category='" + category + '\'' +
+                ", subcategory='" + subcategory + '\'' +
+                ", brand='" + brand + '\'' +
+                '}';
+    }
+
     public Product(String name, double price, int quantity, String description, String supplier, String category, String subcategory, String brand) {
         this.name = name;
         this.price = price;

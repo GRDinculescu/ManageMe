@@ -17,23 +17,22 @@ Un Proyecto de clase de Interfaces para hacer una aplicacion de gestion de inven
   - Hacer la campanita
   - ~~Link a ayuda~~
   - ~~Hacer el menu desplegable~~
-  - Hacer la campanita
-  - Tarjeta de usuario ?
+  - ~~Tarjeta de usuario~~
   - ~~Logo~~
 - Hacer el menu principal
   - Hacer los filtros
-  - Hacer el listado de productos
+  - ~~Hacer el listado de productos~~
   - Hacer edicion para usuario normal (solo editar cantidad)
   - Hacer edicion para demas usuarios
 - General
   - Modal de descarte de cambios
   - Modal de borrado
-  - Mensaje de error
+  - ~~Mensaje de error~~
   - Notificacion (tras ejecutar algo con exito)
 - Ayuda
   - ~~Listado de FAQ~~
   - ~~Detalles de pregunta~~
-  - Envio de pregunta
+  - Envio de pregunta (se quita)
 - Usuarios
   - ~~Listado de Usuarios~~
   - Edicion de usuarios
